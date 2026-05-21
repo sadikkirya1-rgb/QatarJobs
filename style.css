@@ -1416,3 +1416,13 @@ body.dark-mode .application-modal {
     margin: 5px 0 0;
     cursor: help;
 }
+
+@keyframes badgePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+.modal-overlay.active .recommended-badge {
+    animation: badgePulse 2s infinite ease-in-out;
+}
