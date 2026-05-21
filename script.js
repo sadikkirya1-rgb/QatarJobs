@@ -890,6 +890,27 @@ window.addEventListener('scroll', () => {
     }
 });
 
+/* COMPARISON MODAL LOGIC */
+const comparisonModalOverlay = document.getElementById('comparisonModalOverlay');
+const packageIconTrigger = document.getElementById('packageIcon');
+const closeComparisonBtn = document.getElementById('closeComparisonModalBtn');
+
+function openComparisonModal() {
+    comparisonModalOverlay.classList.add('active');
+}
+
+function closeComparisonModal() {
+    comparisonModalOverlay.classList.remove('active');
+}
+
+if (packageIconTrigger) packageIconTrigger.onclick = openComparisonModal;
+if (closeComparisonBtn) closeComparisonBtn.onclick = closeComparisonModal;
+if (comparisonModalOverlay) {
+    comparisonModalOverlay.onclick = (e) => {
+        if (e.target === comparisonModalOverlay) closeComparisonModal();
+    };
+}
+
 /* BUDGET SLIDER & HOURLY CALCULATION LOGIC */
 function updateBudgetUI() {
     const slider = document.getElementById('budgetRange');
@@ -923,6 +944,13 @@ function updateBudgetUI() {
     if (slider && display) {
         const val = parseInt(slider.value);
         display.textContent = val;
+
+        // Progress Animation Gradient
+        const min = parseInt(slider.min) || 1000;
+        const max = parseInt(slider.max) || 10000;
+        const percent = ((val - min) / (max - min)) * 100;
+        
+        slider.style.background = `linear-gradient(to right, var(--primary) 0%, var(--secondary) ${percent}%, rgba(255, 255, 255, 0.1) ${percent}%)`;
         
         const hourly = (val / hoursPerMonth).toFixed(2);
         if (hourlyDisplay) {

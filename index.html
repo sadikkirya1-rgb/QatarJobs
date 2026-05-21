@@ -822,7 +822,7 @@ HIRING MODAL (FOR EMPLOYERS)
 
                 <label for="packageType" style="margin-top: 15px;">Package Type</label>
                 <div class="select-with-icon">
-                    <i id="packageIcon" class="fas fa-business-time"></i>
+                    <i id="packageIcon" class="fas fa-business-time" title="Click to compare packages"></i>
                     <select id="packageType" name="packageType" class="form-select" required>
                         <option value="full-time" selected>Full-time (192 hrs/month)</option>
                         <option value="part-time">Part-time (96 hrs/month)</option>
@@ -912,6 +912,55 @@ HIRING MODAL (FOR EMPLOYERS)
             </div>
             <button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="closeHiringModal()">Got it</button>
         </div>
+    </div>
+</div>
+
+<!-- ======================================================
+PACKAGE COMPARISON MODAL
+====================================================== -->
+<div class="modal-overlay" id="comparisonModalOverlay">
+    <div class="application-modal" style="max-width: 600px;">
+        <button class="close-btn" id="closeComparisonModalBtn">&times;</button>
+        <h2 style="margin-bottom: 10px;">Compare Packages</h2>
+        <p style="color: var(--gray); font-size: 14px;">Choose the contract type that best fits your operational needs in Qatar.</p>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Full-Time</th>
+                    <th>Part-Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monthly Hours</td>
+                    <td>192 Hours</td>
+                    <td>96 Hours</td>
+                </tr>
+                <tr>
+                    <td>Accommodation</td>
+                    <td><i class="fas fa-check-circle check-icon"></i> Provided</td>
+                    <td><i class="fas fa-info-circle" style="color: var(--gold)"></i> Optional</td>
+                </tr>
+                <tr>
+                    <td>Transportation</td>
+                    <td><i class="fas fa-check-circle check-icon"></i> Company Managed</td>
+                    <td><i class="fas fa-check-circle check-icon"></i> Included</td>
+                </tr>
+                <tr>
+                    <td>Health Insurance</td>
+                    <td><i class="fas fa-check-circle check-icon"></i> Comprehensive</td>
+                    <td><i class="fas fa-check-circle check-icon"></i> Standard</td>
+                </tr>
+                <tr>
+                    <td>Contract Type</td>
+                    <td>Annual/Long-term</td>
+                    <td>Monthly/Flexible</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 25px;" onclick="closeComparisonModal()">I Understand</button>
     </div>
 </div>
 
