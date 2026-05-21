@@ -87,11 +87,11 @@ and freelance visa support across Doha and Qatar.
 
 <div class="hero-buttons">
 
-<a href="#" class="btn btn-primary">
+<a href="#" class="btn btn-primary hire-btn">
 Hire Workers
 </a>
 
-<a href="#" class="btn btn-secondary">
+<a href="#workers" class="btn btn-secondary apply-btn" data-job-id="general" data-title="General Application">
 Apply For Jobs
 </a>
 
@@ -480,7 +480,7 @@ Trusted recruitment agency for African cleaners,
 maids, hospitality staff, and manpower solutions.
 </p>
 
-<a href="#" class="btn btn-primary">
+<a href="#" class="btn btn-primary hire-btn">
 Contact Us Today
 </a>
 
@@ -518,6 +518,180 @@ Proudly Ugandan-Owned | African Workforce Specialists
 </footer>
 
 <!-- ======================================================
+APPLICATION MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="applicationModalOverlay">
+    <div class="application-modal">
+        <button class="close-btn" id="closeModalBtn">&times;</button>
+        <h2>Apply for <span id="modalJobTitle"></span></h2>
+        <form class="application-form" id="jobApplicationForm">
+            <div class="progress-container" id="uploadProgressContainer" style="display: none;">
+                <div class="progress-fill" id="uploadProgressFill"></div>
+            </div>
+
+            <div id="formError" class="error-msg"></div>
+
+            <div class="step-indicator" id="applicationStepIndicator">
+                <div class="step-dot active" data-step="0"></div>
+                <div class="step-dot" data-step="1"></div>
+                <div class="step-dot" data-step="2"></div>
+            </div>
+
+            <!-- Step 1: Personal Information -->
+            <div class="form-step active">
+                <label for="applicantName">Full Name</label>
+                <input type="text" id="applicantName" name="applicantName" placeholder="Enter your full name" required minlength="3">
+
+                <label for="applicantEmail">Email Address</label>
+                <input type="email" id="applicantEmail" name="applicantEmail" placeholder="email@example.com" required>
+
+                <label for="applicantPhone">Phone Number (Optional)</label>
+                <input type="tel" id="applicantPhone" name="applicantPhone" placeholder="+974 5555 1234">
+
+                <label for="applicantLinkedIn">LinkedIn Profile URL (Optional)</label>
+                <input type="url" id="applicantLinkedIn" name="applicantLinkedIn" placeholder="https://linkedin.com/in/yourprofile">
+                
+                <div class="step-buttons">
+                    <button type="button" class="btn btn-primary next-step">Next: Resume & Details</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Resume & Details -->
+            <div class="form-step">
+                <label for="applicantResume">Resume (PDF, Max 2MB)</label>
+                <div class="drop-zone" id="resumeDropZone">
+                    <span class="drop-zone__prompt">Drop resume here or click to upload</span>
+                    <input type="file" id="applicantResume" name="applicantResume" accept=".pdf,.doc,.docx" required class="drop-zone__input">
+                </div>
+
+                <div id="resumePreview" class="resume-preview" style="display: none;">
+                    <div class="preview-header">
+                        <span><i class="fas fa-file-pdf"></i> Resume Preview</span>
+                        <button type="button" id="removeResumeBtn" class="remove-btn">Remove</button>
+                    </div>
+                    <iframe id="pdfFrame" src=""></iframe>
+                </div>
+
+                <label for="applicantCoverLetter">Message / Cover Letter</label>
+                <div class="textarea-wrapper">
+                    <textarea id="applicantCoverLetter" name="applicantCoverLetter" placeholder="Tell us about your experience..." minlength="20" maxlength="500"></textarea>
+                    <div class="char-counter"><span id="currentChar">0</span>/500</div>
+                </div>
+
+                <label for="desiredSalary">Desired Monthly Salary (QAR)</label>
+                <input type="number" id="desiredSalary" name="desiredSalary" placeholder="e.g., 5000" min="0">
+
+                <label for="availability">Availability</label>
+                <select id="availability" name="availability" class="form-select">
+                    <option value="" disabled selected>Select availability...</option>
+                    <option value="immediately">Immediately</option>
+                    <option value="2weeks">2 Weeks Notice</option>
+                    <option value="1month">1 Month Notice</option>
+                    <option value="negotiable">Negotiable</option>
+                </select>
+                
+                <div class="step-buttons">
+                    <button type="button" class="btn btn-secondary prev-step">Back</button>
+                    <button type="button" class="btn btn-primary next-step">Next: Review Application</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Summary -->
+            <div class="form-step">
+                <div id="applicationSummary" class="summary-container"></div>
+                
+                <div class="step-buttons">
+                    <button type="button" class="btn btn-secondary prev-step">Back</button>
+                    <button type="submit" class="btn btn-primary" id="submitApplicationBtn">Submit Application</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ======================================================
+HIRING MODAL (FOR EMPLOYERS)
+====================================================== -->
+
+<div class="modal-overlay" id="hiringModalOverlay">
+    <div class="application-modal">
+        <button class="close-btn" id="closeHiringModalBtn">&times;</button>
+        <h2>Hire African Professionals</h2>
+        <p style="color: var(--gray); font-size: 14px; margin-bottom: 20px;">Tell us about your workforce requirements.</p>
+        
+        <div class="step-indicator">
+            <div class="step-dot active" data-step="0"></div>
+            <div class="step-dot" data-step="1"></div>
+            <div class="step-dot" data-step="2"></div>
+            <div class="step-dot" data-step="3"></div>
+        </div>
+
+        <form class="application-form" id="hiringForm">
+            <!-- Step 1: Client Info -->
+            <div class="form-step active">
+                <label for="clientName">Your Name / Company</label>
+                <input type="text" id="clientName" name="clientName" placeholder="Full Name or Company Name" required>
+
+                <label for="clientEmail">Work Email</label>
+                <input type="email" id="clientEmail" name="clientEmail" placeholder="email@company.com" required>
+                
+                <div class="step-buttons">
+                    <button type="button" class="btn btn-primary next-step">Next: Staffing Needs</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Workforce Needs -->
+            <div class="form-step">
+                <label for="workforceType">Staff Category</label>
+                <select id="workforceType" name="workforceType" class="form-select" required>
+                    <option value="" disabled selected>Select category...</option>
+                    <option value="maids">House Maids</option>
+                    <option value="cleaners">Hospitality Cleaners</option>
+                    <option value="office">Office Staff</option>
+                    <option value="manpower">General Manpower</option>
+                </select>
+
+                <label for="staffQuantity">Number of Staff Needed</label>
+                <input type="number" id="staffQuantity" name="staffQuantity" placeholder="e.g. 5" min="1" required>
+                
+                <div class="step-buttons">
+                    <button type="button" class="btn btn-secondary prev-step">Back</button>
+                    <button type="button" class="btn btn-primary next-step">Next: Logistics</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Logistics & Details -->
+            <div class="form-step">
+                <label for="expectedDate">Expected Start Date</label>
+                <input type="date" id="expectedDate" name="expectedDate" required>
+
+                <label for="hiringDetails">Specific Requirements</label>
+                <textarea id="hiringDetails" name="hiringDetails" placeholder="Any specific nationalities or skills required?"></textarea>
+                
+                <div class="step-buttons">
+                    <button type="button" class="btn btn-secondary prev-step">Back</button>
+                    <button type="button" class="btn btn-primary next-step">Review Request</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Summary -->
+            <div class="form-step">
+                <div id="hiringSummary" class="summary-container"></div>
+                
+                <div class="step-buttons">
+                    <button type="button" class="btn btn-secondary prev-step">Back</button>
+                    <button type="submit" class="btn btn-primary" id="submitHiringBtn">
+                        Confirm & Send Request
+                        <i class="fas fa-spinner fa-spin loading-spinner" style="display: none;"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ======================================================
 FLOATING BUTTONS
 ====================================================== -->
 
@@ -527,6 +701,14 @@ FLOATING BUTTONS
 
 <div class="ai-chat">
 <i class="fas fa-robot"></i>
+</div>
+
+<!-- Email Simulation Toast -->
+<div id="emailToast" class="email-toast">
+    <div class="toast-content">
+        <i class="fas fa-paper-plane"></i>
+        <span>Confirmation email sent to your inbox!</span>
+    </div>
 </div>
 
 <!-- ======================================================

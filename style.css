@@ -716,3 +716,285 @@ MOBILE
 }
 
 }
+
+/* ======================================================
+MODAL & FORM VALIDATION
+====================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.application-modal {
+    background: var(--card);
+    padding: 40px;
+    border-radius: 30px;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+}
+
+.application-form label {
+    display: block;
+    margin: 15px 0 8px;
+    font-size: 14px;
+    color: var(--gray);
+}
+
+.application-form input, .application-form textarea {
+    width: 100%;
+    padding: 12px 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Validation States */
+.application-form input:focus:invalid {
+    border-color: #ff4d4d;
+}
+
+.application-form input:focus:valid {
+    border-color: var(--secondary);
+}
+
+.error-msg {
+    color: #ff4d4d;
+    font-size: 13px;
+    margin-top: 10px;
+    display: none;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+body.dark-mode .application-modal {
+    background: #050b15;
+}
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    transition: width 0.3s ease;
+}
+
+/* Drop Zone Styles */
+.drop-zone {
+    max-width: 100%;
+    height: 120px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--gray);
+    border: 2px dashed rgba(0, 217, 255, 0.3);
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.drop-zone--over {
+    border-style: solid;
+    background: rgba(0, 217, 255, 0.05);
+    border-color: var(--primary);
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+/* Email Toast Styles */
+.email-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #1e293b;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    border: 1px solid var(--primary);
+    z-index: 10001;
+    transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0;
+}
+
+.email-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.resume-preview {
+    margin-top: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.preview-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--gray);
+}
+
+.remove-btn {
+    background: none; border: none; color: #ff4d4d; cursor: pointer; font-weight: 600;
+}
+
+#pdfFrame {
+    width: 100%;
+    height: 300px;
+    border: none;
+    background: white;
+}
+
+.textarea-wrapper {
+    position: relative;
+}
+
+.char-counter {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 12px;
+    color: var(--gray);
+    opacity: 0.7;
+}
+
+.form-select {
+    width: 100%;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.form-select option {
+    background: var(--card);
+    color: white;
+}
+
+.form-step {
+    display: none;
+    animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-step.active {
+    display: block;
+}
+
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.step-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.step-dot.active {
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.step-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.summary-container {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 14px;
+}
+
+.loading-spinner {
+    margin-left: 10px;
+}
+
+.print-btn {
+    background: var(--dark);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
