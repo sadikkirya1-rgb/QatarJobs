@@ -1,7 +1,7 @@
 /* LANGUAGE TOGGLE LOGIC */
 const translations = {
     en: {
-        logo_suffix: "Cleaning Company",
+        logo_suffix: "Cleaning Services",
         nav_home: "Home",
         nav_services: "Services",
         nav_workers: "Workers",
@@ -9,10 +9,10 @@ const translations = {
         nav_contact: "Contact",
         hero_badge: "150+ Workers Available Today In Qatar",
         hero_title: "African Cleaning & <span>Recruitment Experts</span>",
-        hero_desc: "Premium African workforce recruitment company based in Qatar and proudly owned by Ugandan professionals. We provide verified African maids, office cleaners, hospitality staff, villa cleaners, manpower solutions, and freelance visa support across Doha and Qatar.",
+        hero_desc: "Premium African workforce recruitment services based in Qatar and proudly owned by Ugandan professionals. We provide verified African maids, office cleaners, hospitality staff, villa cleaners, manpower solutions, and freelance visa support across Doha and Qatar.",
         btn_hire: "Hire Workers",
         btn_apply: "Apply For Jobs",
-        top_banner: "🇶🇦 Qatar Premium Cleaning & Recruitment Company | Proudly Ugandan-Owned | African Workforce Specialists",
+        top_banner: "🇶🇦 Qatar Premium Cleaning & Recruitment Services | Proudly Ugandan-Owned | African Workforce Specialists",
         services_title: "Premium Services",
         services_subtitle: "Modern African recruitment and luxury cleaning solutions across Qatar.",
         cleaning_title: "Cleaning Services",
@@ -101,7 +101,7 @@ const translations = {
         footer_rights: "© 2026 CleanPro Qatar. All Rights Reserved."
     },
     ar: {
-        logo_suffix: "شركة تنظيف",
+        logo_suffix: "خدمات تنظيف",
         nav_home: "الرئيسية",
         nav_services: "خدماتنا",
         nav_workers: "الموظفون",
@@ -109,10 +109,10 @@ const translations = {
         nav_contact: "اتصل بنا",
         hero_badge: "أكثر من 150 عامل متاح اليوم في قطر",
         hero_title: "خبراء التنظيف <span>والتوظيف الأفارقة</span>",
-        hero_desc: "شركة توظيف رائدة للقوى العاملة الأفريقية مقرها قطر وتعود ملكيتها لمهنيين أوغنديين. نحن نوفر خادمات أفريقيات، وعمال تنظيف مكاتب، وموظفي ضيافة، وحلول قوى عاملة، ودعم تأشيرات العمل الحر في الدوحة وجميع أنحاء قطر.",
+        hero_desc: "خدمات توظيف رائدة للقوى العاملة الأفريقية مقرها قطر وتعود ملكيتها لمهنيين أوغنديين. نحن نوفر خادمات أفريقيات، وعمال تنظيف مكاتب، وموظفي ضيافة، وحلول قوى عاملة، ودعم تأشيرات العمل الحر في الدوحة وجميع أنحاء قطر.",
         btn_hire: "توظيف عمال",
         btn_apply: "التقديم للوظائف",
-        top_banner: "🇶🇦 شركة قطر المتميزة للتنظيف والتوظيف | مملوكة بفخر لأوغنديين | متخصصون في القوى العاملة الأفريقية",
+        top_banner: "🇶🇦 خدمات قطر المتميزة للتنظيف والتوظيف | مملوكة بفخر لأوغنديين | متخصصون في القوى العاملة الأفريقية",
         services_title: "خدمات متميزة",
         services_subtitle: "حلول توظيف أفريقية حديثة وخدمات تنظيف فاخرة في جميع أنحاء قطر.",
         cleaning_title: "خدمات التنظيف",
@@ -348,7 +348,7 @@ function populateHiringSummary() {
     const priceDisplay = estimatedTotal > 0 ? `${estimatedTotal.toLocaleString()} QAR` : "Contact for Quote";
 
     const data = {
-        "Company/Name": document.getElementById('clientName').value,
+        "Organization/Name": document.getElementById('clientName').value,
         "Work Email": document.getElementById('clientEmail').value,
         "Staff Category": categoryName,
         "Package": packageText,

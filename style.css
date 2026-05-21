@@ -93,7 +93,14 @@ nav{
 .logo{
     font-size:32px;
     font-weight:800;
-    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    display: block;
 }
 
 .logo .logo-separator {
