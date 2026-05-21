@@ -293,16 +293,27 @@ document.querySelectorAll('.reveal').forEach(el => {
 
 /* NAVIGATION ACTIVE LINK LOGIC */
 
+const navLinksEls = document.querySelectorAll('.nav-links a');
+
 const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+        // Using a more sensitive check for sections entering the "view zone"
         if (entry.isIntersecting) {
             const id = entry.target.getAttribute('id');
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-            });
+            const targetLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+            
+            // Only update highlight if the section has a corresponding nav link
+            if (targetLink) {
+                navLinksEls.forEach(link => link.classList.remove('active'));
+                targetLink.classList.add('active');
+            }
         }
     });
-}, { threshold: 0.5 });
+}, { 
+    // Detect intersection when section reaches the top 20% of the screen
+    threshold: 0.1,
+    rootMargin: "-10% 0px -70% 0px" 
+});
 
 document.querySelectorAll('section[id]').forEach(section => {
     navObserver.observe(section);
