@@ -320,7 +320,7 @@ const hiringForm = document.getElementById('hiringForm');
 
 let currentHiringStep = 0;
 const hiringSteps = document.querySelectorAll('#hiringForm .form-step');
-const stepDots = document.querySelectorAll('.step-indicator .step-dot');
+const stepDots = document.querySelectorAll('#hiringStepIndicator .step-dot');
 const submitHiringBtn = document.getElementById('submitHiringBtn');
 
 function populateHiringSummary() {
