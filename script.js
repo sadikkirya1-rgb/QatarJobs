@@ -926,6 +926,16 @@ window.addEventListener('scroll', () => {
     const progressBar = document.getElementById("progressBar");
     if (progressBar) progressBar.style.width = scrolled + "%";
 
+    // Header background change on scroll
+    const header = document.querySelector('header');
+    if (header) {
+        if (winScroll > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+
     // Show/Hide Back to Top button
     if (backToTopBtn) {
         if (winScroll > 300) {
