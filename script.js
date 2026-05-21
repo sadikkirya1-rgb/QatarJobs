@@ -246,6 +246,11 @@ if (menuBtn && navLinks) {
     menuBtn.onclick = () => {
         navLinks.classList.toggle('active');
     };
+
+    // Close mobile menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
 }
 
 /* DARK MODE TOGGLE */
@@ -284,6 +289,23 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => {
     revealObserver.observe(el);
+});
+
+/* NAVIGATION ACTIVE LINK LOGIC */
+
+const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('section[id]').forEach(section => {
+    navObserver.observe(section);
 });
 
 /* REAL-TIME JOB SEARCH */
