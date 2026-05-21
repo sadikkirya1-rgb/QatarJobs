@@ -110,11 +110,15 @@ function populateHiringSummary() {
     const summaryDiv = document.getElementById('hiringSummary');
     const workforceType = document.getElementById('workforceType');
     const categoryName = workforceType.options[workforceType.selectedIndex].text;
+    const nationalityEl = document.getElementById('preferredNationality');
+    const nationalityText = nationalityEl.options[nationalityEl.selectedIndex].text;
+    const isDomestic = workforceType.value === 'domestic';
 
     const data = {
         "Company/Name": document.getElementById('clientName').value,
         "Work Email": document.getElementById('clientEmail').value,
         "Staff Category": categoryName,
+        ...(isDomestic && { "Nationality": nationalityText }),
         "Quantity": document.getElementById('staffQuantity').value,
         "Start Date": document.getElementById('expectedDate').value
     };
@@ -148,6 +152,7 @@ function showHiringStep(n) {
 /* CATEGORY DESCRIPTION LOGIC */
 const workforceSelect = document.getElementById('workforceType');
 const categoryDesc = document.getElementById('categoryDescription');
+const nationalityField = document.getElementById('nationalityField');
 
 const descriptions = {
     cleaning: "Includes professional cleaners for offices, luxury villas, and deep-cleaning projects.",
@@ -161,6 +166,13 @@ if (workforceSelect) {
         if (descriptions[val]) {
             categoryDesc.textContent = descriptions[val];
             categoryDesc.style.display = 'block';
+        }
+
+        // Show nationality field only for domestic workers
+        if (val === 'domestic') {
+            nationalityField.style.display = 'block';
+        } else {
+            nationalityField.style.display = 'none';
         }
     });
 }
