@@ -313,13 +313,27 @@ function populateHiringSummary() {
     const summaryDiv = document.getElementById('hiringSummary');
     const workforceType = document.getElementById('workforceType');
     const categoryName = workforceType.options[workforceType.selectedIndex].text;
+    const categoryValue = workforceType.value;
+    const quantity = parseInt(document.getElementById('staffQuantity').value) || 0;
+
+    // Pricing Estimation Logic (Monthly Base Rates per Staff)
+    const baseRates = {
+        'cleaning': 2500,
+        'hospitality': 3200,
+        'domestic': 1800
+    };
+    
+    const estimatedMonthly = (baseRates[categoryValue] || 0) * quantity;
+    const priceDisplay = estimatedMonthly > 0 ? `${estimatedMonthly.toLocaleString()} QAR` : "Contact for Quote";
 
     const data = {
         "Company/Name": document.getElementById('clientName').value,
         "Work Email": document.getElementById('clientEmail').value,
         "Staff Category": categoryName,
-        "Quantity": document.getElementById('staffQuantity').value,
-        "Start Date": document.getElementById('expectedDate').value
+        "Quantity": quantity,
+        "Location": document.getElementById('serviceLocation').value,
+        "Start Date": document.getElementById('expectedDate').value,
+        "Estimated Monthly": priceDisplay
     };
 
     summaryDiv.innerHTML = `
@@ -330,6 +344,9 @@ function populateHiringSummary() {
                 <span style="font-weight: 500;">${value}</span>
             </div>
         `).join('')}
+        <p style="font-size: 11px; color: var(--secondary); margin-top: 10px;">
+            <i class="fas fa-info-circle"></i> Pricing is an estimate based on standard monthly contracts.
+        </p>
         <div class="step-buttons" style="justify-content: flex-end; margin-top: 20px;">
             <button type="button" class="btn print-btn" id="printHiringSummaryBtn"><i class="fas fa-print"></i> Print Summary</button>
         </div>
