@@ -1150,6 +1150,7 @@ body.dark-mode .application-modal {
 /* Custom Range Slider */
 .form-range {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 6px;
     background: rgba(255, 255, 255, 0.1); /* Fallback */
@@ -1433,6 +1434,10 @@ body.dark-mode .application-modal {
     width: 100%;
     z-index: 100;
     margin-bottom: 15px;
+}
+
+#categorySelectWrapper {
+    z-index: 101; /* Ensure Staff Category dropdown appears on top of Package Type */
 }
 
 .custom-select-trigger {
