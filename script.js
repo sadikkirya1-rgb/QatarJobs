@@ -315,6 +315,7 @@ function populateHiringSummary() {
     const categoryName = workforceType.options[workforceType.selectedIndex].text;
     const categoryValue = workforceType.value;
     const quantity = parseInt(document.getElementById('staffQuantity').value) || 0;
+    const budgetPref = document.getElementById('budgetRange').value;
 
     // Pricing Estimation Logic (Monthly Base Rates per Staff)
     const baseRates = {
@@ -324,6 +325,8 @@ function populateHiringSummary() {
     };
     
     const estimatedMonthly = (baseRates[categoryValue] || 0) * quantity;
+    // Hourly calculation based on Qatar Standard (48h/week * 4 weeks = 192h/month)
+    const hourlyRate = (budgetPref / 192).toFixed(2);
     const priceDisplay = estimatedMonthly > 0 ? `${estimatedMonthly.toLocaleString()} QAR` : "Contact for Quote";
 
     const data = {
@@ -331,6 +334,8 @@ function populateHiringSummary() {
         "Work Email": document.getElementById('clientEmail').value,
         "Staff Category": categoryName,
         "Quantity": quantity,
+        "Budget Preference": `${budgetPref} QAR/Staff`,
+        "Calculated Hourly": `${hourlyRate} QAR/Hour`,
         "Location": document.getElementById('serviceLocation').value,
         "Start Date": document.getElementById('expectedDate').value,
         "Estimated Monthly": priceDisplay
@@ -889,9 +894,32 @@ window.addEventListener('scroll', () => {
     }
 });
 
+/* BUDGET SLIDER & HOURLY CALCULATION LOGIC */
+function updateBudgetUI() {
+    const slider = document.getElementById('budgetRange');
+    const display = document.getElementById('budgetValue');
+    const hourlyDisplay = document.getElementById('liveHourlyRate');
+    
+    if (slider && display) {
+        const val = slider.value;
+        display.textContent = val;
+        
+        // Calculate hourly based on 192 working hours/month
+        const hourly = (val / 192).toFixed(2);
+        if (hourlyDisplay) {
+            hourlyDisplay.innerHTML = `<i class="fas fa-calculator"></i> Est. <strong>${hourly} QAR/hour</strong> based on budget`;
+        }
+    }
+}
+
 // Initialize everything
 function init() {
     initDrafts();
+    const budgetSlider = document.getElementById('budgetRange');
+    if (budgetSlider) {
+        budgetSlider.addEventListener('input', updateBudgetUI);
+        updateBudgetUI(); // Initial call
+    }
     const savedLang = localStorage.getItem('language') || 'en';
     setLanguage(savedLang);
 }
