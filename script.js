@@ -3,9 +3,9 @@ const translations = {
     en: {
         logo_suffix: "Cleaning Services",
         nav_home: "Home",
-        nav_services: "Services",
+        nav_services: "Premium Services",
         nav_workers: "Workers",
-        nav_process: "Process",
+        nav_process: "Recruitment Process",
         nav_contact: "Contact",
         hero_badge: "150+ Workers Available Today In Qatar",
         hero_title: "African Cleaning & <span>Recruitment Experts</span>",
@@ -103,9 +103,9 @@ const translations = {
     ar: {
         logo_suffix: "خدمات تنظيف",
         nav_home: "الرئيسية",
-        nav_services: "خدماتنا",
+        nav_services: "خدمات متميزة",
         nav_workers: "الموظفون",
-        nav_process: "العملية",
+        nav_process: "عملية التوظيف",
         nav_contact: "اتصل بنا",
         hero_badge: "أكثر من 150 عامل متاح اليوم في قطر",
         hero_title: "خبراء التنظيف <span>والتوظيف الأفارقة</span>",
@@ -227,6 +227,8 @@ function setLanguage(lang) {
     });
     
     localStorage.setItem('language', lang);
+    // Reposition underline after text content changes
+    setTimeout(updateActiveNav, 50);
 }
 
 if (langToggle) {
@@ -294,23 +296,35 @@ document.querySelectorAll('.reveal').forEach(el => {
 /* NAVIGATION ACTIVE LINK LOGIC */
 
 const navLinksEls = document.querySelectorAll('.nav-links a');
+let isManualScroll = false;
+
+function moveUnderline(el) {
+    const underline = document.getElementById('navUnderline');
+    if (!underline || !el) return;
+    underline.style.width = `${el.offsetWidth}px`;
+    underline.style.left = `${el.offsetLeft}px`;
+}
+
+function updateActiveNav() {
+    const activeLink = document.querySelector('.nav-links a.active');
+    if (activeLink) moveUnderline(activeLink);
+}
 
 const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        // Using a more sensitive check for sections entering the "view zone"
-        if (entry.isIntersecting) {
+        // Avoid observer overriding manual clicks during smooth scroll
+        if (!isManualScroll && entry.isIntersecting) {
             const id = entry.target.getAttribute('id');
             const targetLink = document.querySelector(`.nav-links a[href="#${id}"]`);
             
-            // Only update highlight if the section has a corresponding nav link
             if (targetLink) {
                 navLinksEls.forEach(link => link.classList.remove('active'));
                 targetLink.classList.add('active');
+                moveUnderline(targetLink);
             }
         }
     });
 }, { 
-    // Detect intersection when section reaches the top 20% of the screen
     threshold: 0.1,
     rootMargin: "-10% 0px -70% 0px" 
 });
@@ -318,6 +332,28 @@ const navObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('section[id]').forEach(section => {
     navObserver.observe(section);
 });
+
+// Instant Highlight on Click
+navLinksEls.forEach(link => {
+    link.addEventListener('click', () => {
+        isManualScroll = true;
+        
+        // Instant visual update
+        navLinksEls.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        moveUnderline(link);
+        
+        // Mobile menu close
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+        }
+
+        // Unlock observer after scroll finishes
+        setTimeout(() => { isManualScroll = false; }, 800);
+    });
+});
+
+window.addEventListener('resize', updateActiveNav);
 
 /* REAL-TIME JOB SEARCH */
 
