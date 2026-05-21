@@ -123,6 +123,13 @@ nav{
     color:var(--primary);
 }
 
+.logo [data-i18n="logo_suffix"] {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
 .nav-links{
     display:flex;
     gap:35px;

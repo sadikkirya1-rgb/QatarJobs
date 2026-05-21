@@ -3,9 +3,9 @@ const translations = {
     en: {
         logo_suffix: "Cleaning Services",
         nav_home: "Home",
-        nav_services: "Premium Services",
+        nav_services: "Services",
         nav_workers: "Workers",
-        nav_process: "Recruitment Process",
+        nav_process: "Process",
         nav_contact: "Contact",
         hero_badge: "150+ Workers Available Today In Qatar",
         hero_title: "African Cleaning & <span>Recruitment Experts</span>",
@@ -103,9 +103,9 @@ const translations = {
     ar: {
         logo_suffix: "خدمات تنظيف",
         nav_home: "الرئيسية",
-        nav_services: "خدمات متميزة",
+        nav_services: "الخدمات",
         nav_workers: "الموظفون",
-        nav_process: "عملية التوظيف",
+        nav_process: "العملية",
         nav_contact: "اتصل بنا",
         hero_badge: "أكثر من 150 عامل متاح اليوم في قطر",
         hero_title: "خبراء التنظيف <span>والتوظيف الأفارقة</span>",
