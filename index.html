@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="mainHtml">
 <head>
 
 <meta charset="UTF-8">
@@ -25,7 +25,7 @@
 
 <div id="progressBar"></div>
 
-<div class="top-banner">
+<div class="top-banner" data-i18n="top_banner">
 🇶🇦 Qatar Premium Cleaning & Recruitment Company | Proudly Ugandan-Owned | African Workforce Specialists
 </div>
 
@@ -38,17 +38,21 @@ NAVBAR
 <nav>
 
 <div class="logo">
-Med<span>Rich</span> <span class="logo-separator"></span> Cleaning Company
+Med<span>Rich</span> <span class="logo-separator"></span> <span data-i18n="logo_suffix">Cleaning Company</span>
 </div>
 
 <div class="nav-links" id="navLinks">
 
-<a href="#home">Home</a>
-<a href="#services">Services</a>
-<a href="#workers">Workers</a>
-<a href="#process">Process</a>
-<a href="#contact">Contact</a>
+<a href="#home" data-i18n="nav_home">Home</a>
+<a href="#services" data-i18n="nav_services">Services</a>
+<a href="#workers" data-i18n="nav_workers">Workers</a>
+<a href="#process" data-i18n="nav_process">Process</a>
+<a href="#contact" data-i18n="nav_contact">Contact</a>
 
+</div>
+
+<div class="lang-switch" id="langToggle">
+    <span id="langText">العربية</span>
 </div>
 
 <div class="menu-btn" id="menuBtn">
@@ -69,29 +73,28 @@ HERO
 
 <div class="live-badge">
 <div class="live-dot"></div>
-150+ Workers Available Today In Qatar
+<span data-i18n="hero_badge">150+ Workers Available Today In Qatar</span>
 </div>
 
-<h1>
-African Cleaning &
-<span>Recruitment Experts</span>
+<h1 data-i18n="hero_title">
+    African Cleaning & <span>Recruitment Experts</span>
 </h1>
 
-<p>
-Premium African workforce recruitment company based in Qatar
-and proudly owned by Ugandan professionals.
-We provide verified African maids, office cleaners,
-hospitality staff, villa cleaners, manpower solutions,
-and freelance visa support across Doha and Qatar.
+<p data-i18n="hero_desc">
+    Premium African workforce recruitment company based in Qatar
+    and proudly owned by Ugandan professionals.
+    We provide verified African maids, office cleaners,
+    hospitality staff, villa cleaners, manpower solutions,
+    and freelance visa support across Doha and Qatar.
 </p>
 
 <div class="hero-buttons">
 
-<a href="#" class="btn btn-primary hire-btn">
+<a href="#" class="btn btn-primary hire-btn" data-i18n="btn_hire">
 Hire Workers
 </a>
 
-<a href="#" class="btn btn-secondary apply-btn" data-job-id="general" data-title="General Application">
+<a href="#" class="btn btn-secondary apply-btn" data-job-id="general" data-title="General Application" data-i18n="btn_apply">
 Apply For Jobs
 </a>
 
@@ -115,51 +118,130 @@ SERVICES
 
 <div class="section-title reveal">
 
-<h2>
-Premium Services
-</h2>
+<h2 data-i18n="services_title">Our Professional Services</h2>
 
-<p>
-Modern African recruitment and luxury cleaning solutions across Qatar.
+<p data-i18n="services_subtitle">
+Specialized cleaning and hospitality solutions delivered by our expert African workforce across Doha and greater Qatar.
 </p>
 
 </div>
 
-<div class="grid">
-
-<div class="card service-card reveal">
-    <img src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?q=80&w=800&auto=format&fit=crop" alt="Cleaning Services">
-    <div class="service-content">
-        <div class="service-icon">
-            <i class="fas fa-broom"></i>
+<div class="qatar-services-wrapper">
+    
+    <!-- Residential Cleaning -->
+    <h3 class="qatar-category-title reveal">Residential Cleaning Services</h3>
+    <div class="qatar-services-grid">
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-broom qatar-service-icon"></i>
+            <h4>Standard Cleaning</h4>
+            <p>Regular dusting, vacuuming, mopping, and surface wiping for Qatari villas and apartments.</p>
+            <button class="btn btn-primary hire-btn">Inquire Now</button>
         </div>
-        <h3>Cleaning Services</h3>
-        <p>Professional residential, office, villa, and commercial cleaning solutions across Qatar.</p>
-        <button class="btn btn-primary hire-btn" style="margin-top: 20px; width: 100%;">Quick Quote</button>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-sparkles qatar-service-icon"></i>
+            <h4>Deep Cleaning</h4>
+            <p>Detailed scrubbing of grout, baseboards, and deep sanitization of kitchen appliances.</p>
+            <button class="btn btn-primary hire-btn">Inquire Now</button>
+        </div>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-truck-moving qatar-service-icon"></i>
+            <h4>Move-In / Move-Out</h4>
+            <p>Full sanitization of empty properties for new occupants, landlords, or real estate agents.</p>
+            <button class="btn btn-primary hire-btn">Inquire Now</button>
+        </div>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-couch qatar-service-icon"></i>
+            <h4>Sofa & Upholstery</h4>
+            <p>Deep steam cleaning for majlis seating, couches, mattresses, and heavy curtains.</p>
+            <button class="btn btn-primary hire-btn">Inquire Now</button>
+        </div>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-window-restore qatar-service-icon"></i>
+            <h4>Window Cleaning</h4>
+            <p>Interior and exterior glass washing to remove desert dust and stubborn sand streaks.</p>
+            <button class="btn btn-primary hire-btn">Inquire Now</button>
+        </div>
     </div>
-</div>
 
-<div class="card service-card reveal">
-    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop" alt="Hospitality Staff">
-    <div class="service-content">
-        <div class="service-icon">
-            <i class="fas fa-concierge-bell"></i>
+    <!-- Commercial Cleaning -->
+    <h3 class="qatar-category-title reveal">Commercial & Office Cleaning</h3>
+    <div class="qatar-services-grid">
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-building qatar-service-icon"></i>
+            <h4>Office Janitorial</h4>
+            <p>Daily or weekly workspace cleaning, desk sanitization, and professional trash removal.</p>
+            <button class="btn btn-primary hire-btn">Book Service</button>
         </div>
-        <h3>Hospitality Staff</h3>
-        <p>Expert hotel cleaners, catering staff, and hospitality professionals from across Africa.</p>
-        <button class="btn btn-primary hire-btn" style="margin-top: 20px; width: 100%;">Quick Quote</button>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-store qatar-service-icon"></i>
+            <h4>Retail & Showroom</h4>
+            <p>Premium floor polishing and high-gloss window cleaning for malls and storefronts.</p>
+            <button class="btn btn-primary hire-btn">Book Service</button>
+        </div>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-hand-holding-medical qatar-service-icon"></i>
+            <h4>Clinic Disinfection</h4>
+            <p>Specialized, high-level sanitization meeting Qatar Ministry of Public Health standards.</p>
+            <button class="btn btn-primary hire-btn">Book Service</button>
+        </div>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-industry qatar-service-icon"></i>
+            <h4>Industrial & Warehouse</h4>
+            <p>Heavy-duty floor scrubbing, pressure washing, and industrial degreasing solutions.</p>
+            <button class="btn btn-primary hire-btn">Book Service</button>
+        </div>
     </div>
-</div>
 
-<div class="card service-card reveal">
-    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" alt="Domestic Workers">
-    <div class="service-content">
-        <div class="service-icon">
-            <i class="fas fa-home"></i>
+    <!-- Hospitality Services -->
+    <h3 class="qatar-category-title reveal">Hospitality Services</h3>
+    <div class="qatar-services-grid">
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-key qatar-service-icon"></i>
+            <h4>Short-Term Rental</h4>
+            <p>Fast-turnaround cleaning, restocking, and laundry for Airbnb and holiday homes.</p>
+            <button class="btn btn-primary hire-btn">Inquire Now</button>
         </div>
-        <h3>Domestic Workers</h3>
-        <p>Verified African maids, nannies, and housekeepers for homes and luxury villas.</p>
-        <button class="btn btn-primary hire-btn" style="margin-top: 20px; width: 100%;">Quick Quote</button>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-hotel qatar-service-icon"></i>
+            <h4>Hotel Housekeeping</h4>
+            <p>Outsourced, well-trained room cleaning and turndown service staff for luxury hotels.</p>
+            <button class="btn btn-primary hire-btn">Inquire Now</button>
+        </div>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-glass-cheers qatar-service-icon"></i>
+            <h4>Event & Party Cleanup</h4>
+            <p>Pre-event setup and post-party cleanup for corporate gatherings and large weddings.</p>
+            <button class="btn btn-primary hire-btn">Inquire Now</button>
+        </div>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-utensils qatar-service-icon"></i>
+            <h4>Kitchen Stewarding</h4>
+            <p>Professional stewards for commercial kitchens, dishwashing, and food prep cleanup.</p>
+            <button class="btn btn-primary hire-btn">Inquire Now</button>
+        </div>
+    </div>
+
+    <!-- Hospitality & Domestic Staffing -->
+    <h3 class="qatar-category-title reveal">Hospitality & Domestic Staffing</h3>
+    <div class="qatar-services-grid">
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-female qatar-service-icon"></i>
+            <h4>Hourly/Monthly Maids</h4>
+            <p>Professionally trained, vetted female maids for domestic help on flexible schedules.</p>
+            <button class="btn btn-primary hire-btn">Hire Staff</button>
+        </div>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-mug-hot qatar-service-icon"></i>
+            <h4>Office Boys/Girls</h4>
+            <p>Dedicated staff for serving Arabic coffee, tea, and managing office hospitality needs.</p>
+            <button class="btn btn-primary hire-btn">Hire Staff</button>
+        </div>
+        <div class="qatar-service-card reveal">
+            <i class="fas fa-user-tie qatar-service-icon"></i>
+            <h4>Event Hostesses</h4>
+            <p>Premium hospitality staff for corporate events, weddings, and private VIP gatherings.</p>
+            <button class="btn btn-primary hire-btn">Hire Staff</button>
+        </div>
     </div>
 </div>
 
@@ -175,18 +257,18 @@ AFRICAN WORKERS
 
 <div class="section-title reveal">
 
-<h2>
+<h2 data-i18n="workers_title">
 Professional African Workforce
 </h2>
 
-<p>
+<p data-i18n="workers_subtitle">
 Verified African workers available for immediate deployment in Qatar.
 </p>
 
 </div>
 
 <div class="filter-container reveal" style="text-align: center; margin-bottom: 40px;">
-    <label for="nationalityFilter" style="display: block; margin-bottom: 10px; color: var(--gray);">Search by Workforce Nationality:</label>
+    <label for="nationalityFilter" style="display: block; margin-bottom: 10px; color: var(--gray);" data-i18n="filter_label">Search by Workforce Nationality:</label>
     <select id="nationalityFilter" class="form-select" style="max-width: 300px; margin: 0 auto; border: 1px solid var(--primary);">
         <option value="all">All Nationalities</option>
         <option value="uganda">Uganda 🇺🇬</option>
@@ -317,22 +399,22 @@ STATS
 
 <div class="stat reveal">
 <h2>12K+</h2>
-<p>Registered Workers</p>
+<p data-i18n="stats_registered">Registered Workers</p>
 </div>
 
 <div class="stat reveal">
 <h2>98%</h2>
-<p>Client Satisfaction</p>
+<p data-i18n="stats_satisfaction">Client Satisfaction</p>
 </div>
 
 <div class="stat reveal">
 <h2>350+</h2>
-<p>Completed Projects</p>
+<p data-i18n="stats_projects">Completed Projects</p>
 </div>
 
 <div class="stat reveal">
 <h2>24/7</h2>
-<p>Support Service</p>
+<p data-i18n="stats_support">Support Service</p>
 </div>
 
 </div>
@@ -349,11 +431,11 @@ PROCESS
 
 <div class="section-title reveal">
 
-<h2>
+<h2 data-i18n="process_title">
 Recruitment Process
 </h2>
 
-<p>
+<p data-i18n="process_subtitle">
 Fast and secure manpower recruitment process.
 </p>
 
@@ -367,9 +449,9 @@ Fast and secure manpower recruitment process.
 
 <div class="card timeline-card">
 
-<h3>Worker Screening</h3>
+<h3 data-i18n="process_step1_title">Worker Screening</h3>
 
-<p>
+<p data-i18n="process_step1_desc">
 Professional interviews and background verification.
 </p>
 
@@ -383,9 +465,9 @@ Professional interviews and background verification.
 
 <div class="card timeline-card">
 
-<h3>Visa Processing</h3>
+<h3 data-i18n="process_step2_title">Visa Processing</h3>
 
-<p>
+<p data-i18n="process_step2_desc">
 Fast legal documentation and relocation support.
 </p>
 
@@ -399,9 +481,9 @@ Fast legal documentation and relocation support.
 
 <div class="card timeline-card">
 
-<h3>Deployment</h3>
+<h3 data-i18n="process_step3_title">Deployment</h3>
 
-<p>
+<p data-i18n="process_step3_desc">
 Immediate workforce deployment across Qatar.
 </p>
 
@@ -415,9 +497,9 @@ Immediate workforce deployment across Qatar.
 
 <div class="card timeline-card">
 
-<h3>Customer Support</h3>
+<h3 data-i18n="process_step4_title">Customer Support</h3>
 
-<p>
+<p data-i18n="process_step4_desc">
 Continuous management and customer assistance.
 </p>
 
@@ -437,7 +519,7 @@ TESTIMONIALS
 
 <div class="section-title reveal">
 
-<h2>
+<h2 data-i18n="testimonials_title">
 Client Testimonials
 </h2>
 
@@ -495,20 +577,20 @@ FAQ SECTION
 
 <section id="faq">
     <div class="section-title reveal">
-        <h2>Frequently Asked Questions</h2>
+        <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
     </div>
     <div class="faq-container reveal">
         <div class="faq-item">
-            <div class="faq-question">How long does the recruitment process take? <i class="fas fa-chevron-down"></i></div>
-            <div class="faq-answer">Typically, the process from selection to deployment in Qatar takes between 2 to 4 weeks, depending on visa processing times.</div>
+            <div class="faq-question" data-i18n="faq_q1">How long does the recruitment process take? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer" data-i18n="faq_a1">Typically, the process from selection to deployment in Qatar takes between 2 to 4 weeks, depending on visa processing times.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Are your workers trained? <i class="fas fa-chevron-down"></i></div>
-            <div class="faq-answer">Yes, all our workers undergo rigorous screening and specific training for the Qatar market, including hospitality standards and modern cleaning techniques.</div>
+            <div class="faq-question" data-i18n="faq_q2">Are your workers trained? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer" data-i18n="faq_a2">Yes, all our workers undergo rigorous screening and specific training for the Qatar market, including hospitality standards and modern cleaning techniques.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Do you provide freelance visa support? <i class="fas fa-chevron-down"></i></div>
-            <div class="faq-answer">Medrich specializes in providing legal manpower solutions and documentation support for African professionals entering the Qatar workforce.</div>
+            <div class="faq-question" data-i18n="faq_q3">Do you provide freelance visa support? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer" data-i18n="faq_a3">Medrich specializes in providing legal manpower solutions and documentation support for African professionals entering the Qatar workforce.</div>
         </div>
     </div>
 </section>
@@ -521,16 +603,16 @@ CTA
 
 <div class="cta reveal">
 
-<h2>
+<h2 data-i18n="cta_title">
 Hire Professional African Workers In Qatar
 </h2>
 
-<p>
+<p data-i18n="cta_desc">
 Trusted recruitment agency for African cleaners,
 maids, hospitality staff, and manpower solutions.
 </p>
 
-<a href="#" class="btn btn-primary hire-btn">
+<a href="#" class="btn btn-primary hire-btn" data-i18n="cta_btn">
 Contact Us Today
 </a>
 
@@ -544,11 +626,11 @@ FOOTER
 
 <footer>
 
-<h3>
+<h3 data-i18n="footer_title">
 Medrich Qatar Recruitment & Cleaning Services
 </h3>
 
-<p>
+<p data-i18n="footer_desc">
 Proudly Ugandan-Owned | African Workforce Specialists
 </p>
 
@@ -561,7 +643,7 @@ Proudly Ugandan-Owned | African Workforce Specialists
 
 </div>
 
-<p>
+<p data-i18n="footer_rights">
 © 2026 CleanPro Qatar. All Rights Reserved.
 </p>
 

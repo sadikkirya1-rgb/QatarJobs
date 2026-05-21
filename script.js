@@ -1,3 +1,150 @@
+/* LANGUAGE TOGGLE LOGIC */
+const translations = {
+    en: {
+        logo_suffix: "Cleaning Company",
+        nav_home: "Home",
+        nav_services: "Services",
+        nav_workers: "Workers",
+        nav_process: "Process",
+        nav_contact: "Contact",
+        hero_badge: "150+ Workers Available Today In Qatar",
+        hero_title: "African Cleaning & <span>Recruitment Experts</span>",
+        hero_desc: "Premium African workforce recruitment company based in Qatar and proudly owned by Ugandan professionals. We provide verified African maids, office cleaners, hospitality staff, villa cleaners, manpower solutions, and freelance visa support across Doha and Qatar.",
+        btn_hire: "Hire Workers",
+        btn_apply: "Apply For Jobs",
+        top_banner: "🇶🇦 Qatar Premium Cleaning & Recruitment Company | Proudly Ugandan-Owned | African Workforce Specialists",
+        services_title: "Premium Services",
+        services_subtitle: "Modern African recruitment and luxury cleaning solutions across Qatar.",
+        cleaning_title: "Cleaning Services",
+        cleaning_desc: "Professional residential, office, villa, and commercial cleaning solutions across Qatar.",
+        hospitality_title: "Hospitality Staff",
+        hospitality_desc: "Expert hotel cleaners, catering staff, and hospitality professionals from across Africa.",
+        domestic_title: "Domestic Workers",
+        domestic_desc: "Verified African maids, nannies, and housekeepers for homes and luxury villas.",
+        quick_quote: "Quick Quote",
+        workers_title: "Professional African Workforce",
+        workers_subtitle: "Verified African workers available for immediate deployment in Qatar.",
+        filter_label: "Search by Workforce Nationality:",
+        stats_registered: "Registered Workers",
+        stats_satisfaction: "Client Satisfaction",
+        stats_projects: "Completed Projects",
+        stats_support: "24/7 Support Service",
+        process_title: "Recruitment Process",
+        process_subtitle: "Fast and secure manpower recruitment process.",
+        process_step1_title: "Worker Screening",
+        process_step1_desc: "Professional interviews and background verification.",
+        process_step2_title: "Visa Processing",
+        process_step2_desc: "Fast legal documentation and relocation support.",
+        process_step3_title: "Deployment",
+        process_step3_desc: "Immediate workforce deployment across Qatar.",
+        process_step4_title: "Customer Support",
+        process_step4_desc: "Continuous management and customer assistance.",
+        testimonials_title: "Client Testimonials",
+        faq_title: "Frequently Asked Questions",
+        faq_q1: "How long does the recruitment process take? <i class=\"fas fa-chevron-down\"></i>",
+        faq_a1: "Typically, the process from selection to deployment in Qatar takes between 2 to 4 weeks, depending on visa processing times.",
+        faq_q2: "Are your workers trained? <i class=\"fas fa-chevron-down\"></i>",
+        faq_a2: "Yes, all our workers undergo rigorous screening and specific training for the Qatar market, including hospitality standards and modern cleaning techniques.",
+        faq_q3: "Do you provide freelance visa support? <i class=\"fas fa-chevron-down\"></i>",
+        faq_a3: "Medrich specializes in providing legal manpower solutions and documentation support for African professionals entering the Qatar workforce.",
+        cta_title: "Hire Professional African Workers In Qatar",
+        cta_desc: "Trusted recruitment agency for African cleaners, maids, hospitality staff, and manpower solutions.",
+        cta_btn: "Contact Us Today",
+        footer_title: "Medrich Qatar Recruitment & Cleaning Services",
+        footer_desc: "Proudly Ugandan-Owned | African Workforce Specialists",
+        footer_rights: "© 2026 CleanPro Qatar. All Rights Reserved."
+    },
+    ar: {
+        logo_suffix: "شركة تنظيف",
+        nav_home: "الرئيسية",
+        nav_services: "خدماتنا",
+        nav_workers: "الموظفون",
+        nav_process: "العملية",
+        nav_contact: "اتصل بنا",
+        hero_badge: "أكثر من 150 عامل متاح اليوم في قطر",
+        hero_title: "خبراء التنظيف <span>والتوظيف الأفارقة</span>",
+        hero_desc: "شركة توظيف رائدة للقوى العاملة الأفريقية مقرها قطر وتعود ملكيتها لمهنيين أوغنديين. نحن نوفر خادمات أفريقيات، وعمال تنظيف مكاتب، وموظفي ضيافة، وحلول قوى عاملة، ودعم تأشيرات العمل الحر في الدوحة وجميع أنحاء قطر.",
+        btn_hire: "توظيف عمال",
+        btn_apply: "التقديم للوظائف",
+        top_banner: "🇶🇦 شركة قطر المتميزة للتنظيف والتوظيف | مملوكة بفخر لأوغنديين | متخصصون في القوى العاملة الأفريقية",
+        services_title: "خدمات متميزة",
+        services_subtitle: "حلول توظيف أفريقية حديثة وخدمات تنظيف فاخرة في جميع أنحاء قطر.",
+        cleaning_title: "خدمات التنظيف",
+        cleaning_desc: "حلول تنظيف احترافية سكنية ومكتبية وفيلات وتجارية في جميع أنحاء قطر.",
+        hospitality_title: "موظفي الضيافة",
+        hospitality_desc: "عمال تنظيف فنادق خبراء، وموظفي تموين، ومحترفي ضيافة من جميع أنحاء أفريقيا.",
+        domestic_title: "العمالة المنزلية",
+        domestic_desc: "خادمات أفريقيات ومربيات ومدبرات منزل معتمدات للمنازل والفيلات الفاخرة.",
+        quick_quote: "اقتباس سريع",
+        workers_title: "القوى العاملة الأفريقية المهنية",
+        workers_subtitle: "عمال أفارقة معتمدون متاحون للنشر الفوري في قطر.",
+        filter_label: "البحث حسب جنسية القوى العاملة:",
+        stats_registered: "عمال مسجلون",
+        stats_satisfaction: "رضا العملاء",
+        stats_projects: "مشاريع مكتملة",
+        stats_support: "خدمة دعم 24/7",
+        process_title: "عملية التوظيف",
+        process_subtitle: "عملية توظيف سريعة وآمنة للقوى العاملة.",
+        process_step1_title: "فحص العمال",
+        process_step1_desc: "مقابلات مهنية والتحقق من الخلفية.",
+        process_step2_title: "معالجة التأشيرات",
+        process_step2_desc: "توثيق قانوني سريع ودعم الانتقال.",
+        process_step3_title: "النشر",
+        process_step3_desc: "نشر القوى العاملة الفوري في جميع أنحاء قطر.",
+        process_step4_title: "دعم العملاء",
+        process_step4_desc: "إدارة مستمرة ومساعدة العملاء.",
+        testimonials_title: "شهادات العملاء",
+        faq_title: "الأسئلة الشائعة",
+        faq_q1: "كم تستغرق عملية التوظيف؟ <i class=\"fas fa-chevron-down\"></i>",
+        faq_a1: "عادةً ما تستغرق العملية من الاختيار إلى النشر في قطر ما بين 2 إلى 4 أسابيع، اعتماداً على أوقات معالجة التأشيرة.",
+        faq_q2: "هل عمالكم مدربون؟ <i class=\"fas fa-chevron-down\"></i>",
+        faq_a2: "نعم، يخضع جميع عمالنا لفحص صارم وتدريب محدد لسوق قطر، بما في ذلك معايير الضيافة وتقنيات التنظيف الحديثة.",
+        faq_q3: "هل تقدمون دعم تأشيرة العمل الحر؟ <i class=\"fas fa-chevron-down\"></i>",
+        faq_a3: "تتخصص ميدريتش في توفير حلول القوى العاملة القانونية ودعم التوثيق للمهنيين الأفارقة الذين يدخلون سوق العمل القطري.",
+        cta_title: "وظف عمالاً أفارقة محترفين في قطر",
+        cta_desc: "وكالة توظيف موثوقة لعمال التنظيف والخادمات وموظفي الضيافة وحلول القوى العاملة الأفريقية.",
+        cta_btn: "اتصل بنا اليوم",
+        footer_title: "ميدريتش قطر لخدمات التوظيف والتنظيف",
+        footer_desc: "مملوكة بفخر لأوغنديين | متخصصون في القوى العاملة الأفريقية",
+        footer_rights: "© 2026 CleanPro قطر. جميع الحقوق محفوظة."
+    }
+};
+
+const langToggle = document.getElementById('langToggle');
+const langText = document.getElementById('langText');
+const mainHtml = document.getElementById('mainHtml');
+
+function setLanguage(lang) {
+    mainHtml.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    mainHtml.setAttribute('lang', lang);
+    langText.textContent = lang === 'ar' ? 'English' : 'العربية';
+    
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    // Handle placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+            el.setAttribute('placeholder', translations[lang][key]);
+        }
+    });
+    
+    localStorage.setItem('language', lang);
+}
+
+if (langToggle) {
+    langToggle.addEventListener('click', () => {
+        const currentLang = mainHtml.getAttribute('lang');
+        const newLang = currentLang === 'en' ? 'ar' : 'en';
+        setLanguage(newLang);
+    });
+}
+
 /* MOBILE MENU */
 
 const menuBtn = document.getElementById('menuBtn');
@@ -616,4 +763,10 @@ window.addEventListener('scroll', () => {
 });
 
 // Initialize everything
-initDrafts();
+function init() {
+    initDrafts();
+    const savedLang = localStorage.getItem('language') || 'en';
+    setLanguage(savedLang);
+}
+
+init();
