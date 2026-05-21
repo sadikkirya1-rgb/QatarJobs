@@ -93,6 +93,7 @@ nav{
 .logo{
     font-size:32px;
     font-weight:800;
+    color: #fff;
 }
 
 .logo span{
@@ -369,7 +370,16 @@ SERVICES
 ====================================================== */
 
 .service-card{
-    padding:40px;
+    padding: 0;
+}
+
+.service-card img {
+    height: 250px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.service-content {
+    padding: 30px;
 }
 
 .service-icon{
