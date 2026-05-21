@@ -91,7 +91,7 @@ and freelance visa support across Doha and Qatar.
 Hire Workers
 </a>
 
-<a href="#workers" class="btn btn-secondary apply-btn" data-job-id="general" data-title="General Application">
+<a href="#" class="btn btn-secondary apply-btn" data-job-id="general" data-title="General Application">
 Apply For Jobs
 </a>
 
@@ -524,7 +524,8 @@ APPLICATION MODAL
 <div class="modal-overlay" id="applicationModalOverlay">
     <div class="application-modal">
         <button class="close-btn" id="closeModalBtn">&times;</button>
-        <h2>Apply for <span id="modalJobTitle"></span></h2>
+        <div id="applicationModalContent">
+            <h2>Apply for <span id="modalJobTitle"></span></h2>
         <form class="application-form" id="jobApplicationForm">
             <div class="progress-container" id="uploadProgressContainer" style="display: none;">
                 <div class="progress-fill" id="uploadProgressFill"></div>
@@ -607,6 +608,13 @@ APPLICATION MODAL
                 </div>
             </div>
         </form>
+        </div>
+        <div id="applicationSuccess" class="success-message" style="display: none;">
+            <i class="fas fa-check-circle"></i>
+            <h3>Application Received!</h3>
+            <p style="color: var(--gray);">Thank you for applying. Our recruitment team will review your profile and contact you shortly.</p>
+            <button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="closeApplicationModal()">Back to Jobs</button>
+        </div>
     </div>
 </div>
 
@@ -617,6 +625,7 @@ HIRING MODAL (FOR EMPLOYERS)
 <div class="modal-overlay" id="hiringModalOverlay">
     <div class="application-modal">
         <button class="close-btn" id="closeHiringModalBtn">&times;</button>
+        <div id="hiringModalContent">
         <h2>Hire African Professionals</h2>
         <p style="color: var(--gray); font-size: 14px; margin-bottom: 20px;">Tell us about your workforce requirements.</p>
         
@@ -688,6 +697,13 @@ HIRING MODAL (FOR EMPLOYERS)
                 </div>
             </div>
         </form>
+        </div>
+        <div id="hiringSuccess" class="success-message" style="display: none;">
+            <i class="fas fa-paper-plane"></i>
+            <h3>Request Sent Successfully!</h3>
+            <p style="color: var(--gray);">We have received your hiring requirements. One of our account managers will reach out within 24 hours.</p>
+            <button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="closeHiringModal()">Got it</button>
+        </div>
     </div>
 </div>
 

@@ -222,6 +222,10 @@ function openApplicationModal(jobTitle) {
     modalJobTitleSpan.textContent = jobTitle;
     applicationModalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent scrolling background
+    
+    // Reset View
+    document.getElementById('applicationModalContent').style.display = 'block';
+    document.getElementById('applicationSuccess').style.display = 'none';
     showApplicationStep(0); // Reset to first step
 }
 
@@ -306,6 +310,10 @@ if (coverLetterTextarea) {
 function openHiringModal() {
     hiringModalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Reset View
+    document.getElementById('hiringModalContent').style.display = 'block';
+    document.getElementById('hiringSuccess').style.display = 'none';
 }
 
 function closeHiringModal() {
@@ -450,7 +458,8 @@ if (jobApplicationForm) {
                 clearInterval(uploadSimulation);
                 
                 setTimeout(() => {
-                    closeApplicationModal();
+                    document.getElementById('applicationModalContent').style.display = 'none';
+                    document.getElementById('applicationSuccess').style.display = 'block';
                     clearDrafts();
                     
                     // Email Simulation Toast
@@ -489,8 +498,9 @@ if (hiringForm) {
 
         // Simulate network request
         setTimeout(() => {
-            alert("Hiring request sent! Our recruitment team will contact you shortly.");
-            closeHiringModal();
+            document.getElementById('hiringModalContent').style.display = 'none';
+            document.getElementById('hiringSuccess').style.display = 'block';
+            
             submitHiringBtn.textContent = "Confirm & Send Request";
             spinner.style.display = 'none';
             submitHiringBtn.disabled = false;
@@ -516,26 +526,14 @@ document.addEventListener('click', (e) => {
 /* APPLY FOR JOB */
 
 document.addEventListener('click', (e) => {
-    // Check if the clicked element is an apply button
-    if (e.target && e.target.classList.contains('apply-btn')) {
-        const btn = e.target;
+    const btn = e.target.closest('.apply-btn');
+    if (btn) {
+        e.preventDefault();
+        
         const jobCard = btn.closest('.job-card');
-        const jobTitle = jobCard ? jobCard.dataset.title : 'this position';
+        const jobTitle = btn.dataset.title || (jobCard ? jobCard.dataset.title : 'this position');
 
-        // Update UI to show processing state
-        btn.textContent = 'Applying...';
-        btn.style.pointerEvents = 'none';
-        btn.style.opacity = '0.7';
-
-        // Simulate a network request delay
-        // Instead of an alert, open the modal
-        setTimeout(() => {
-            // Revert button state for now, as the actual application happens in the modal
-            btn.textContent = 'Apply Now'; 
-            btn.style.pointerEvents = '';
-            btn.style.opacity = '';
-            openApplicationModal(jobTitle);
-        }, 1200);
+        openApplicationModal(jobTitle);
     }
 });
 
