@@ -895,6 +895,67 @@ MODAL & FORM VALIDATION
     position: relative;
 }
 
+/* Tooltip Styles */
+.warning-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    margin-top: 5px;
+}
+
+.tooltip-trigger {
+    cursor: help;
+    color: var(--primary);
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.custom-tooltip {
+    visibility: hidden;
+    width: 220px;
+    background: var(--card);
+    color: var(--gray);
+    text-align: left;
+    border-radius: 12px;
+    padding: 12px;
+    position: absolute;
+    z-index: 100;
+    bottom: 125%;
+    left: 0;
+    opacity: 0;
+    transition: 0.3s;
+    font-size: 11px;
+    line-height: 1.5;
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    pointer-events: none;
+}
+
+.warning-container:hover .custom-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Package Select with Dynamic Icons */
+.select-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.select-with-icon i {
+    position: absolute;
+    left: 15px;
+    color: var(--primary);
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.select-with-icon .form-select {
+    padding-left: 45px;
+}
+
 .application-form label {
     display: block;
     margin: 15px 0 8px;

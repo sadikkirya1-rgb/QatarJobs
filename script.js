@@ -316,29 +316,25 @@ function populateHiringSummary() {
     const categoryValue = workforceType.value;
     const quantity = parseInt(document.getElementById('staffQuantity').value) || 0;
     const budgetPref = document.getElementById('budgetRange').value;
+    const packageType = document.getElementById('packageType').value;
+    const packageText = document.getElementById('packageType').options[document.getElementById('packageType').selectedIndex].text;
 
-    // Pricing Estimation Logic (Monthly Base Rates per Staff)
-    const baseRates = {
-        'cleaning': 2500,
-        'hospitality': 3200,
-        'domestic': 1800
-    };
-    
-    const estimatedMonthly = (baseRates[categoryValue] || 0) * quantity;
-    // Hourly calculation based on Qatar Standard (48h/week * 4 weeks = 192h/month)
-    const hourlyRate = (budgetPref / 192).toFixed(2);
-    const priceDisplay = estimatedMonthly > 0 ? `${estimatedMonthly.toLocaleString()} QAR` : "Contact for Quote";
+    const hoursPerMonth = packageType === 'full-time' ? 192 : 96;
+    const hourlyRate = (budgetPref / hoursPerMonth).toFixed(2);
+    const estimatedTotal = budgetPref * quantity;
+    const priceDisplay = estimatedTotal > 0 ? `${estimatedTotal.toLocaleString()} QAR` : "Contact for Quote";
 
     const data = {
         "Company/Name": document.getElementById('clientName').value,
         "Work Email": document.getElementById('clientEmail').value,
         "Staff Category": categoryName,
+        "Package": packageText,
         "Quantity": quantity,
         "Budget Preference": `${budgetPref} QAR/Staff`,
         "Calculated Hourly": `${hourlyRate} QAR/Hour`,
         "Location": document.getElementById('serviceLocation').value,
         "Start Date": document.getElementById('expectedDate').value,
-        "Estimated Monthly": priceDisplay
+        "Estimated Monthly Total": priceDisplay
     };
 
     summaryDiv.innerHTML = `
@@ -899,15 +895,52 @@ function updateBudgetUI() {
     const slider = document.getElementById('budgetRange');
     const display = document.getElementById('budgetValue');
     const hourlyDisplay = document.getElementById('liveHourlyRate');
+    const packageType = document.getElementById('packageType')?.value || 'full-time';
+    const category = document.getElementById('workforceType')?.value;
+    const warningDisplay = document.getElementById('budgetWarning');
+    const warningWrapper = document.getElementById('warningWrapper');
+    const tooltipDisplay = document.getElementById('budgetTooltip');
+    const packageIcon = document.getElementById('packageIcon');
+
+    const minRates = {
+        cleaning: { 'full-time': 2500, 'part-time': 1500 },
+        hospitality: { 'full-time': 3200, 'part-time': 2000 },
+        domestic: { 'full-time': 1800, 'part-time': 1100 }
+    };
+
+    const minReasons = {
+        cleaning: "Covers premium eco-friendly chemicals, industrial equipment maintenance, and staff transportation logistics.",
+        hospitality: "Includes professional grooming kits, specialized service training, health certifications, and safety compliance.",
+        domestic: "Covers comprehensive medical insurance, standardized accommodation, and strict worker welfare protection."
+    };
+
+    if (packageIcon) {
+        packageIcon.className = packageType === 'full-time' ? 'fas fa-business-time' : 'fas fa-user-clock';
+    }
+
+    const hoursPerMonth = packageType === 'full-time' ? 192 : 96;
     
     if (slider && display) {
-        const val = slider.value;
+        const val = parseInt(slider.value);
         display.textContent = val;
         
-        // Calculate hourly based on 192 working hours/month
-        const hourly = (val / 192).toFixed(2);
+        const hourly = (val / hoursPerMonth).toFixed(2);
         if (hourlyDisplay) {
-            hourlyDisplay.innerHTML = `<i class="fas fa-calculator"></i> Est. <strong>${hourly} QAR/hour</strong> based on budget`;
+            hourlyDisplay.innerHTML = `<i class="fas fa-calculator"></i> Est. <strong>${hourly} QAR/hour</strong> (${packageType})`;
+        }
+
+        // Validation check
+        if (category && minRates[category] && warningDisplay && warningWrapper) {
+            const minBudget = minRates[category][packageType];
+            if (val < minBudget) {
+                warningDisplay.textContent = `Note: Below recommended minimum (${minBudget} QAR).`;
+                warningWrapper.style.display = 'flex';
+                if (tooltipDisplay) tooltipDisplay.textContent = minReasons[category];
+                display.style.color = '#ff4d4d';
+            } else {
+                warningWrapper.style.display = 'none';
+                display.style.color = 'var(--primary)';
+            }
         }
     }
 }
@@ -916,10 +949,21 @@ function updateBudgetUI() {
 function init() {
     initDrafts();
     const budgetSlider = document.getElementById('budgetRange');
+    const packageSelect = document.getElementById('packageType');
+    const categorySelect = document.getElementById('workforceType');
+
     if (budgetSlider) {
         budgetSlider.addEventListener('input', updateBudgetUI);
-        updateBudgetUI(); // Initial call
     }
+    if (packageSelect) {
+        packageSelect.addEventListener('change', updateBudgetUI);
+    }
+    if (categorySelect) {
+        categorySelect.addEventListener('change', updateBudgetUI);
+    }
+    
+    updateBudgetUI(); // Initial call
+
     const savedLang = localStorage.getItem('language') || 'en';
     setLanguage(savedLang);
 }
