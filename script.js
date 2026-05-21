@@ -74,6 +74,28 @@ let currentApplicationStep = 0;
 const applicationSteps = document.querySelectorAll('#jobApplicationForm .form-step');
 const applicationStepDots = document.querySelectorAll('#applicationStepIndicator .step-dot');
 
+let successTimerInterval = null;
+
+function startSuccessTimer(callback) {
+    let timeLeft = 5;
+    const timerDisplays = document.querySelectorAll('.timer-count');
+    
+    // Reset displays
+    timerDisplays.forEach(el => el.textContent = timeLeft);
+    
+    if (successTimerInterval) clearInterval(successTimerInterval);
+
+    successTimerInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplays.forEach(el => el.textContent = timeLeft);
+        
+        if (timeLeft <= 0) {
+            clearInterval(successTimerInterval);
+            callback();
+        }
+    }, 1000);
+}
+
 /* HIRING MODAL */
 const hiringModalOverlay = document.getElementById('hiringModalOverlay');
 const closeHiringModalBtn = document.getElementById('closeHiringModalBtn');
@@ -121,6 +143,26 @@ function showHiringStep(n) {
         dot.classList.toggle('active', index === n);
     });
     currentHiringStep = n;
+}
+
+/* CATEGORY DESCRIPTION LOGIC */
+const workforceSelect = document.getElementById('workforceType');
+const categoryDesc = document.getElementById('categoryDescription');
+
+const descriptions = {
+    cleaning: "Includes professional cleaners for offices, luxury villas, and deep-cleaning projects.",
+    hospitality: "Expert staff for hotels, catering companies, and event management teams.",
+    domestic: "Verified housemaids, nannies, and housekeepers primarily from Uganda, Kenya, and Rwanda."
+};
+
+if (workforceSelect) {
+    workforceSelect.addEventListener('change', (e) => {
+        const val = e.target.value;
+        if (descriptions[val]) {
+            categoryDesc.textContent = descriptions[val];
+            categoryDesc.style.display = 'block';
+        }
+    });
 }
 
 function validateHiringStep(n) {
@@ -241,6 +283,7 @@ function closeApplicationModal() {
     document.getElementById('resumeDropZone').style.display = 'flex';
     
     jobApplicationForm.reset(); // Clear form fields
+    if (successTimerInterval) clearInterval(successTimerInterval);
     showApplicationStep(0); // Reset to first step
 }
 
@@ -321,6 +364,7 @@ function closeHiringModal() {
     document.body.style.overflow = '';
     hiringForm.reset();
     submitHiringBtn.disabled = false; // Ensure button is re-enabled
+    if (successTimerInterval) clearInterval(successTimerInterval);
     showHiringStep(0); // Reset to first step
 }
 
@@ -460,6 +504,7 @@ if (jobApplicationForm) {
                 setTimeout(() => {
                     document.getElementById('applicationModalContent').style.display = 'none';
                     document.getElementById('applicationSuccess').style.display = 'block';
+                    startSuccessTimer(closeApplicationModal);
                     clearDrafts();
                     
                     // Email Simulation Toast
@@ -500,6 +545,7 @@ if (hiringForm) {
         setTimeout(() => {
             document.getElementById('hiringModalContent').style.display = 'none';
             document.getElementById('hiringSuccess').style.display = 'block';
+            startSuccessTimer(closeHiringModal);
             
             submitHiringBtn.textContent = "Confirm & Send Request";
             spinner.style.display = 'none';

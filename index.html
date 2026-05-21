@@ -132,44 +132,30 @@ Modern African recruitment and luxury cleaning solutions across Qatar.
 <div class="service-icon">
 <i class="fas fa-broom"></i>
 </div>
-
-<h3>Luxury Cleaning</h3>
-
+<h3>Cleaning Services</h3>
 <p>
-Residential, hotel, office, villa,
-and commercial cleaning services.
+Professional residential, office, villa, and commercial cleaning solutions across Qatar.
 </p>
-
 </div>
 
 <div class="card service-card reveal">
-
 <div class="service-icon">
-<i class="fas fa-users"></i>
+<i class="fas fa-concierge-bell"></i>
 </div>
-
-<h3>African Maid Recruitment</h3>
-
+<h3>Hospitality Staff</h3>
 <p>
-Professional African maids and housekeepers
-for homes and luxury villas.
+Expert hotel cleaners, catering staff, and hospitality professionals from across Africa.
 </p>
-
 </div>
 
 <div class="card service-card reveal">
-
 <div class="service-icon">
-<i class="fas fa-passport"></i>
+<i class="fas fa-home"></i>
 </div>
-
-<h3>Visa Processing</h3>
-
+<h3>Domestic Workers</h3>
 <p>
-Freelance visa support, relocation,
-documentation, and onboarding.
+Verified African maids, nannies, and housekeepers for homes and luxury villas.
 </p>
-
 </div>
 
 </div>
@@ -206,13 +192,16 @@ Available
 
 <div class="worker-info">
 
-<h3>House Maid</h3>
+<h3>Domestic Worker</h3>
 
 <p>Ugandan Professional Worker</p>
 
 <div class="worker-tags">
 <span>Housekeeping</span>
-<span>Childcare</span>
+<span>🇺🇬 Uganda</span>
+<span>🇰🇪 Kenya</span>
+<span>🇷🇼 Rwanda</span>
+<span>Nanny</span>
 <span>Verified</span>
 </div>
 
@@ -230,13 +219,13 @@ Verified
 
 <div class="worker-info">
 
-<h3>Hotel Cleaner</h3>
+<h3>Hospitality Staff</h3>
 
 <p>Hospitality Cleaning Expert</p>
 
 <div class="worker-tags">
 <span>Hotels</span>
-<span>Hospitality</span>
+<span>Catering</span>
 <span>Professional</span>
 </div>
 
@@ -254,7 +243,7 @@ Top Rated
 
 <div class="worker-info">
 
-<h3>Office Cleaning Team</h3>
+<h3>Cleaning Specialist</h3>
 
 <p>Commercial Cleaning Workforce</p>
 
@@ -610,9 +599,20 @@ APPLICATION MODAL
         </form>
         </div>
         <div id="applicationSuccess" class="success-message" style="display: none;">
+            <div class="particles">
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+            </div>
             <i class="fas fa-check-circle"></i>
             <h3>Application Received!</h3>
             <p style="color: var(--gray);">Thank you for applying. Our recruitment team will review your profile and contact you shortly.</p>
+            <div class="countdown-timer">
+                Closing in <span class="timer-count">5</span>s
+            </div>
             <button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="closeApplicationModal()">Back to Jobs</button>
         </div>
     </div>
@@ -655,11 +655,12 @@ HIRING MODAL (FOR EMPLOYERS)
                 <label for="workforceType">Staff Category</label>
                 <select id="workforceType" name="workforceType" class="form-select" required>
                     <option value="" disabled selected>Select category...</option>
-                    <option value="maids">House Maids</option>
-                    <option value="cleaners">Hospitality Cleaners</option>
-                    <option value="office">Office Staff</option>
-                    <option value="manpower">General Manpower</option>
+                    <option value="cleaning" title="Residential and Commercial Cleaning">Cleaning Services</option>
+                    <option value="hospitality" title="Hotel, Catering and Events Staff">Hospitality Staff</option>
+                    <option value="domestic" title="Nannies, Maids and Housekeepers">Domestic Workers</option>
                 </select>
+
+                <div id="categoryDescription" class="category-info" style="display: none;"></div>
 
                 <label for="staffQuantity">Number of Staff Needed</label>
                 <input type="number" id="staffQuantity" name="staffQuantity" placeholder="e.g. 5" min="1" required>
@@ -699,9 +700,20 @@ HIRING MODAL (FOR EMPLOYERS)
         </form>
         </div>
         <div id="hiringSuccess" class="success-message" style="display: none;">
+            <div class="particles">
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+                <span class="particle"></span>
+            </div>
             <i class="fas fa-paper-plane"></i>
             <h3>Request Sent Successfully!</h3>
             <p style="color: var(--gray);">We have received your hiring requirements. One of our account managers will reach out within 24 hours.</p>
+            <div class="countdown-timer">
+                Closing in <span class="timer-count">5</span>s
+            </div>
             <button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="closeHiringModal()">Got it</button>
         </div>
     </div>
