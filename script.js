@@ -323,6 +323,8 @@ function populateHiringSummary() {
     const hoursPerUnit = hoursLookup[packageType];
     const hourlyRate = (budgetPref / hoursPerUnit).toFixed(2);
     
+    const totalHours = hoursPerUnit * quantity;
+
     // Calculate a monthly estimate for the summary
     let unitMultiplier = 1; // monthly is base
     if (packageType === 'daily') unitMultiplier = 26; 
@@ -337,6 +339,7 @@ function populateHiringSummary() {
         "Staff Category": categoryName,
         "Package": packageText,
         "Quantity": quantity,
+        "Total Capacity": `${totalHours} hrs/${packageType.includes('time') ? 'mo' : (packageType === 'daily' ? 'day' : 'request')}`,
         "Budget Preference": `${budgetPref} QAR/Staff`,
         "Calculated Hourly": `${hourlyRate} QAR/Hour`,
         "Location": document.getElementById('serviceLocation').value,
@@ -930,6 +933,7 @@ function updateBudgetUI() {
     const tooltipDisplay = document.getElementById('budgetTooltip');
     const packageIcon = document.getElementById('packageIcon');
     const budgetLabelText = document.getElementById('budgetLabelText');
+    const totalHoursDisplay = document.getElementById('totalHoursDisplay');
 
     const minRates = {
         cleaning: { 'full-time': 2500, 'part-time': 1500, 'daily': 150, 'hourly': 25 },
@@ -965,6 +969,7 @@ function updateBudgetUI() {
 
     const hoursLookup = { 'full-time': 192, 'part-time': 96, 'daily': 8, 'hourly': 1 };
     const hoursPerUnit = hoursLookup[packageType];
+    const quantity = parseInt(document.getElementById('staffQuantity')?.value) || 0;
     
     if (slider && display) {
         const val = parseInt(slider.value);
@@ -980,6 +985,12 @@ function updateBudgetUI() {
         const hourly = (val / hoursPerUnit).toFixed(2);
         if (hourlyDisplay) {
             hourlyDisplay.innerHTML = `<i class="fas fa-calculator"></i> Est. <strong>${hourly} QAR/hour</strong> (${packageType})`;
+        }
+
+        if (totalHoursDisplay) {
+            const totalHours = hoursPerUnit * quantity;
+            const unitLabel = packageType.includes('time') ? 'hrs/month' : (packageType === 'daily' ? 'hrs/day' : 'hrs');
+            totalHoursDisplay.innerHTML = `<i class="fas fa-hourglass-half"></i> Total Capacity: <strong>${totalHours} ${unitLabel}</strong>`;
         }
 
         // Validation check
@@ -1020,6 +1031,7 @@ function init() {
     const budgetSlider = document.getElementById('budgetRange');
     const packageSelect = document.getElementById('packageType');
     const categorySelect = document.getElementById('workforceType');
+    const quantityInput = document.getElementById('staffQuantity');
 
     if (budgetSlider) {
         budgetSlider.addEventListener('input', updateBudgetUI);
@@ -1029,6 +1041,9 @@ function init() {
     }
     if (categorySelect) {
         categorySelect.addEventListener('change', updateBudgetUI);
+    }
+    if (quantityInput) {
+        quantityInput.addEventListener('input', updateBudgetUI);
     }
     
     updateBudgetUI(); // Initial call

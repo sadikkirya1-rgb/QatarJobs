@@ -833,6 +833,7 @@ HIRING MODAL (FOR EMPLOYERS)
 
                 <label for="staffQuantity">Number of Staff Needed</label>
                 <input type="number" id="staffQuantity" name="staffQuantity" placeholder="e.g. 5" min="1" required>
+                <p id="totalHoursDisplay" style="font-size: 12px; color: var(--primary); margin-top: 5px; font-weight: 600;"></p>
 
                 <!-- Budget Range Slider -->
                 <div style="margin-top: 25px;">
@@ -926,42 +927,63 @@ PACKAGE COMPARISON MODAL
         <h2 style="margin-bottom: 10px;">Compare Packages</h2>
         <p style="color: var(--gray); font-size: 14px;">Choose the contract type that best fits your operational needs in Qatar.</p>
         
-        <table class="comparison-table">
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>Full-Time</th>
-                    <th>Part-Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Monthly Hours</td>
-                    <td>192 Hours</td>
-                    <td>96 Hours</td>
-                </tr>
-                <tr>
-                    <td>Accommodation</td>
-                    <td><i class="fas fa-check-circle check-icon"></i> Provided</td>
-                    <td><i class="fas fa-info-circle" style="color: var(--gold)"></i> Optional</td>
-                </tr>
-                <tr>
-                    <td>Transportation</td>
-                    <td><i class="fas fa-check-circle check-icon"></i> Company Managed</td>
-                    <td><i class="fas fa-check-circle check-icon"></i> Included</td>
-                </tr>
-                <tr>
-                    <td>Health Insurance</td>
-                    <td><i class="fas fa-check-circle check-icon"></i> Comprehensive</td>
-                    <td><i class="fas fa-check-circle check-icon"></i> Standard</td>
-                </tr>
-                <tr>
-                    <td>Contract Type</td>
-                    <td>Annual/Long-term</td>
-                    <td>Monthly/Flexible</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Full-Time</th>
+                        <th>Part-Time</th>
+                        <th>Daily</th>
+                        <th>Hourly</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Standard Hours</td>
+                        <td>192 hrs/mo</td>
+                        <td>96 hrs/mo</td>
+                        <td>8 hrs/day</td>
+                        <td>On-demand</td>
+                    </tr>
+                    <tr>
+                        <td>Accommodation</td>
+                        <td><i class="fas fa-check-circle check-icon"></i> Provided</td>
+                        <td><i class="fas fa-info-circle" style="color: var(--gold)"></i> Optional</td>
+                        <td><i class="fas fa-times-circle times-icon"></i> No</td>
+                        <td><i class="fas fa-times-circle times-icon"></i> No</td>
+                    </tr>
+                    <tr>
+                        <td>Transportation</td>
+                        <td><i class="fas fa-check-circle check-icon"></i> Company Managed</td>
+                        <td><i class="fas fa-check-circle check-icon"></i> Included</td>
+                        <td><i class="fas fa-check-circle check-icon"></i> Included</td>
+                        <td><i class="fas fa-info-circle" style="color: var(--gold)"></i> Client Managed</td>
+                    </tr>
+                    <tr>
+                        <td>Health Insurance</td>
+                        <td><i class="fas fa-check-circle check-icon"></i> Comprehensive</td>
+                        <td><i class="fas fa-check-circle check-icon"></i> Standard</td>
+                        <td><i class="fas fa-check-circle check-icon"></i> Standard</td>
+                        <td><i class="fas fa-info-circle" style="color: var(--gold)"></i> Basic Coverage</td>
+                    </tr>
+                    <tr>
+                        <td>Best For</td>
+                        <td>Villas/Offices</td>
+                        <td>Small Offices</td>
+                        <td>Events</td>
+                        <td>Quick Fixes</td>
+                    </tr>
+                    <tr>
+                        <td>Contract Type</td>
+                        <td>Long-term</td>
+                        <td>Flexible</td>
+                        <td>One-time</td>
+                        <td>Ad-hoc</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 25px;" onclick="closeComparisonModal()">I Understand</button>
     </div>
 </div>
