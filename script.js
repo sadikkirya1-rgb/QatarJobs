@@ -64,6 +64,21 @@ if (searchInput) {
     });
 }
 
+/* WORKFORCE NATIONALITY FILTER */
+const nationalityFilter = document.getElementById('nationalityFilter');
+const workerCardItems = document.querySelectorAll('.worker-card-item');
+
+if (nationalityFilter) {
+    nationalityFilter.addEventListener('change', (e) => {
+        const selectedNationality = e.target.value;
+        workerCardItems.forEach(card => {
+            const cardNationality = card.dataset.nationality;
+            const isVisible = selectedNationality === 'all' || cardNationality === selectedNationality;
+            card.style.display = isVisible ? 'block' : 'none';
+        });
+    });
+}
+
 /* APPLICATION MODAL */
 const applicationModalOverlay = document.getElementById('applicationModalOverlay');
 const closeModalBtn = document.getElementById('closeModalBtn');

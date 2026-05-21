@@ -38,7 +38,7 @@ NAVBAR
 <nav>
 
 <div class="logo">
-Med<span>Rich</span>
+Med<span>Rich</span> <span class="logo-separator"></span> Cleaning Company
 </div>
 
 <div class="nav-links" id="navLinks">
@@ -128,24 +128,26 @@ Modern African recruitment and luxury cleaning solutions across Qatar.
 <div class="grid">
 
 <div class="card service-card reveal">
-    <img src="https://images.unsplash.com/photo-1581578731522-5b17b689b0c2?q=80&w=800&auto=format&fit=crop" alt="Cleaning Services">
+    <img src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?q=80&w=800&auto=format&fit=crop" alt="Cleaning Services">
     <div class="service-content">
         <div class="service-icon">
             <i class="fas fa-broom"></i>
         </div>
         <h3>Cleaning Services</h3>
         <p>Professional residential, office, villa, and commercial cleaning solutions across Qatar.</p>
+        <button class="btn btn-primary hire-btn" style="margin-top: 20px; width: 100%;">Quick Quote</button>
     </div>
 </div>
 
 <div class="card service-card reveal">
-    <img src="https://images.unsplash.com/photo-1541944743827-e04bb645f946?q=80&w=800&auto=format&fit=crop" alt="Hospitality Staff">
+    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop" alt="Hospitality Staff">
     <div class="service-content">
         <div class="service-icon">
             <i class="fas fa-concierge-bell"></i>
         </div>
         <h3>Hospitality Staff</h3>
         <p>Expert hotel cleaners, catering staff, and hospitality professionals from across Africa.</p>
+        <button class="btn btn-primary hire-btn" style="margin-top: 20px; width: 100%;">Quick Quote</button>
     </div>
 </div>
 
@@ -157,6 +159,7 @@ Modern African recruitment and luxury cleaning solutions across Qatar.
         </div>
         <h3>Domestic Workers</h3>
         <p>Verified African maids, nannies, and housekeepers for homes and luxury villas.</p>
+        <button class="btn btn-primary hire-btn" style="margin-top: 20px; width: 100%;">Quick Quote</button>
     </div>
 </div>
 
@@ -182,9 +185,21 @@ Verified African workers available for immediate deployment in Qatar.
 
 </div>
 
+<div class="filter-container reveal" style="text-align: center; margin-bottom: 40px;">
+    <label for="nationalityFilter" style="display: block; margin-bottom: 10px; color: var(--gray);">Search by Workforce Nationality:</label>
+    <select id="nationalityFilter" class="form-select" style="max-width: 300px; margin: 0 auto; border: 1px solid var(--primary);">
+        <option value="all">All Nationalities</option>
+        <option value="uganda">Uganda 🇺🇬</option>
+        <option value="kenya">Kenya 🇰🇪</option>
+        <option value="rwanda">Rwanda 🇷🇼</option>
+        <option value="tanzania">Tanzania 🇹🇿</option>
+        <option value="ethiopia">Ethiopia 🇪🇹</option>
+    </select>
+</div>
+
 <div class="grid">
 
-<div class="card reveal">
+<div class="card reveal worker-card-item" data-nationality="uganda">
 
 <div class="badge">
 Available
@@ -211,7 +226,7 @@ Available
 
 </div>
 
-<div class="card reveal">
+<div class="card reveal worker-card-item" data-nationality="kenya">
 
 <div class="badge">
 Verified
@@ -235,7 +250,7 @@ Verified
 
 </div>
 
-<div class="card reveal">
+<div class="card reveal worker-card-item" data-nationality="rwanda">
 
 <div class="badge">
 Top Rated
