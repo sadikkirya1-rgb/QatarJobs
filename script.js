@@ -35,8 +35,8 @@ const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            // Optional: stop observing after reveal
-            // revealObserver.unobserve(entry.target);
+            // Performance optimization: stop observing once revealed
+            revealObserver.unobserve(entry.target);
         }
     });
 }, {
@@ -64,21 +64,6 @@ if (searchInput) {
     });
 }
 
-/* WORKFORCE NATIONALITY FILTER */
-const nationalityFilter = document.getElementById('nationalityFilter');
-const workerCardItems = document.querySelectorAll('.worker-card-item');
-
-if (nationalityFilter) {
-    nationalityFilter.addEventListener('change', (e) => {
-        const selectedNationality = e.target.value;
-        workerCardItems.forEach(card => {
-            const cardNationality = card.dataset.nationality;
-            const isVisible = selectedNationality === 'all' || cardNationality === selectedNationality;
-            card.style.display = isVisible ? 'block' : 'none';
-        });
-    });
-}
-
 /* APPLICATION MODAL */
 const applicationModalOverlay = document.getElementById('applicationModalOverlay');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -88,28 +73,6 @@ const jobApplicationForm = document.getElementById('jobApplicationForm');
 let currentApplicationStep = 0;
 const applicationSteps = document.querySelectorAll('#jobApplicationForm .form-step');
 const applicationStepDots = document.querySelectorAll('#applicationStepIndicator .step-dot');
-
-let successTimerInterval = null;
-
-function startSuccessTimer(callback) {
-    let timeLeft = 5;
-    const timerDisplays = document.querySelectorAll('.timer-count');
-    
-    // Reset displays
-    timerDisplays.forEach(el => el.textContent = timeLeft);
-    
-    if (successTimerInterval) clearInterval(successTimerInterval);
-
-    successTimerInterval = setInterval(() => {
-        timeLeft--;
-        timerDisplays.forEach(el => el.textContent = timeLeft);
-        
-        if (timeLeft <= 0) {
-            clearInterval(successTimerInterval);
-            callback();
-        }
-    }, 1000);
-}
 
 /* HIRING MODAL */
 const hiringModalOverlay = document.getElementById('hiringModalOverlay');
@@ -125,15 +88,11 @@ function populateHiringSummary() {
     const summaryDiv = document.getElementById('hiringSummary');
     const workforceType = document.getElementById('workforceType');
     const categoryName = workforceType.options[workforceType.selectedIndex].text;
-    const nationalityEl = document.getElementById('preferredNationality');
-    const nationalityText = nationalityEl.options[nationalityEl.selectedIndex].text;
-    const isDomestic = workforceType.value === 'domestic';
 
     const data = {
         "Company/Name": document.getElementById('clientName').value,
         "Work Email": document.getElementById('clientEmail').value,
         "Staff Category": categoryName,
-        ...(isDomestic && { "Nationality": nationalityText }),
         "Quantity": document.getElementById('staffQuantity').value,
         "Start Date": document.getElementById('expectedDate').value
     };
@@ -162,34 +121,6 @@ function showHiringStep(n) {
         dot.classList.toggle('active', index === n);
     });
     currentHiringStep = n;
-}
-
-/* CATEGORY DESCRIPTION LOGIC */
-const workforceSelect = document.getElementById('workforceType');
-const categoryDesc = document.getElementById('categoryDescription');
-const nationalityField = document.getElementById('nationalityField');
-
-const descriptions = {
-    cleaning: "Includes professional cleaners for offices, luxury villas, and deep-cleaning projects.",
-    hospitality: "Expert staff for hotels, catering companies, and event management teams.",
-    domestic: "Verified housemaids, nannies, and housekeepers primarily from Uganda, Kenya, and Rwanda."
-};
-
-if (workforceSelect) {
-    workforceSelect.addEventListener('change', (e) => {
-        const val = e.target.value;
-        if (descriptions[val]) {
-            categoryDesc.textContent = descriptions[val];
-            categoryDesc.style.display = 'block';
-        }
-
-        // Show nationality field only for domestic workers
-        if (val === 'domestic') {
-            nationalityField.style.display = 'block';
-        } else {
-            nationalityField.style.display = 'none';
-        }
-    });
 }
 
 function validateHiringStep(n) {
@@ -291,10 +222,6 @@ function openApplicationModal(jobTitle) {
     modalJobTitleSpan.textContent = jobTitle;
     applicationModalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent scrolling background
-    
-    // Reset View
-    document.getElementById('applicationModalContent').style.display = 'block';
-    document.getElementById('applicationSuccess').style.display = 'none';
     showApplicationStep(0); // Reset to first step
 }
 
@@ -310,7 +237,6 @@ function closeApplicationModal() {
     document.getElementById('resumeDropZone').style.display = 'flex';
     
     jobApplicationForm.reset(); // Clear form fields
-    if (successTimerInterval) clearInterval(successTimerInterval);
     showApplicationStep(0); // Reset to first step
 }
 
@@ -380,10 +306,6 @@ if (coverLetterTextarea) {
 function openHiringModal() {
     hiringModalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
-    // Reset View
-    document.getElementById('hiringModalContent').style.display = 'block';
-    document.getElementById('hiringSuccess').style.display = 'none';
 }
 
 function closeHiringModal() {
@@ -391,7 +313,6 @@ function closeHiringModal() {
     document.body.style.overflow = '';
     hiringForm.reset();
     submitHiringBtn.disabled = false; // Ensure button is re-enabled
-    if (successTimerInterval) clearInterval(successTimerInterval);
     showHiringStep(0); // Reset to first step
 }
 
@@ -529,9 +450,7 @@ if (jobApplicationForm) {
                 clearInterval(uploadSimulation);
                 
                 setTimeout(() => {
-                    document.getElementById('applicationModalContent').style.display = 'none';
-                    document.getElementById('applicationSuccess').style.display = 'block';
-                    startSuccessTimer(closeApplicationModal);
+                    closeApplicationModal();
                     clearDrafts();
                     
                     // Email Simulation Toast
@@ -570,10 +489,8 @@ if (hiringForm) {
 
         // Simulate network request
         setTimeout(() => {
-            document.getElementById('hiringModalContent').style.display = 'none';
-            document.getElementById('hiringSuccess').style.display = 'block';
-            startSuccessTimer(closeHiringModal);
-            
+            alert("Hiring request sent! Our recruitment team will contact you shortly.");
+            closeHiringModal();
             submitHiringBtn.textContent = "Confirm & Send Request";
             spinner.style.display = 'none';
             submitHiringBtn.disabled = false;
@@ -596,6 +513,53 @@ document.addEventListener('click', (e) => {
     }
 });
 
+/* FAQ ACCORDION */
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const item = question.parentElement;
+        item.classList.toggle('active');
+        const icon = question.querySelector('i');
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    });
+});
+
+/* WORKER PROFILE MODAL LOGIC */
+const profileModalOverlay = document.getElementById('profileModalOverlay');
+const closeProfileModalBtn = document.getElementById('closeProfileModalBtn');
+
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('view-profile-btn')) {
+        const btn = e.target;
+        const name = btn.dataset.workerName;
+        const bio = btn.dataset.bio;
+        const nationality = btn.dataset.nationality;
+        const skills = btn.dataset.skills.split(',');
+
+        document.getElementById('profileName').textContent = name;
+        document.getElementById('profileBio').textContent = bio;
+        document.getElementById('profileNationality').textContent = nationality;
+        
+        const skillsContainer = document.getElementById('profileSkills');
+        skillsContainer.innerHTML = '';
+        skills.forEach(skill => {
+            const span = document.createElement('span');
+            span.textContent = skill.trim();
+            skillsContainer.appendChild(span);
+        });
+
+        profileModalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+});
+
+if (closeProfileModalBtn) {
+    closeProfileModalBtn.onclick = () => {
+        profileModalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+}
+
 /* APPLY FOR JOB */
 
 document.addEventListener('click', (e) => {
@@ -603,6 +567,7 @@ document.addEventListener('click', (e) => {
     if (btn) {
         e.preventDefault();
         
+        // Get title from data attribute or fallback to parent card title
         const jobCard = btn.closest('.job-card');
         const jobTitle = btn.dataset.title || (jobCard ? jobCard.dataset.title : 'this position');
 

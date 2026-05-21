@@ -222,6 +222,8 @@ Available
 <span>Verified</span>
 </div>
 
+<button class="btn btn-secondary view-profile-btn" style="margin-top: 15px; width: 100%;" data-worker-name="Grace Namono" data-bio="Grace is a highly experienced housekeeper with 4 years of experience in luxury villas in Kampala. She specializes in deep cleaning and infant care." data-skills="Ironing, Laundry, Childcare, Cooking" data-nationality="Ugandan">View Profile</button>
+
 </div>
 
 </div>
@@ -246,6 +248,8 @@ Verified
 <span>Professional</span>
 </div>
 
+<button class="btn btn-secondary view-profile-btn" style="margin-top: 15px; width: 100%;" data-worker-name="Samuel Okello" data-bio="Samuel has worked in the hospitality sector for 5 years, including 2 years at a 4-star hotel. He is an expert in industrial cleaning equipment." data-skills="Industrial Cleaning, Floor Polishing, Team Lead" data-nationality="Kenyan">View Profile</button>
+
 </div>
 
 </div>
@@ -269,6 +273,8 @@ Top Rated
 <span>Offices</span>
 <span>Experienced</span>
 </div>
+
+<button class="btn btn-secondary view-profile-btn" style="margin-top: 15px; width: 100%;" data-worker-name="Jeanette Umutoni" data-bio="Jeanette is a specialized commercial cleaner with a focus on office environments. She is known for her punctuality and attention to detail." data-skills="Office Sanitization, Window Cleaning, Organizing" data-nationality="Rwandan">View Profile</button>
 
 </div>
 
@@ -481,6 +487,30 @@ Highly recommended in Qatar.
 
 </div>
 
+</section>
+
+<!-- ======================================================
+FAQ SECTION
+====================================================== -->
+
+<section id="faq">
+    <div class="section-title reveal">
+        <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-container reveal">
+        <div class="faq-item">
+            <div class="faq-question">How long does the recruitment process take? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Typically, the process from selection to deployment in Qatar takes between 2 to 4 weeks, depending on visa processing times.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Are your workers trained? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Yes, all our workers undergo rigorous screening and specific training for the Qatar market, including hospitality standards and modern cleaning techniques.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Do you provide freelance visa support? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Medrich specializes in providing legal manpower solutions and documentation support for African professionals entering the Qatar workforce.</div>
+        </div>
+    </div>
 </section>
 
 <!-- ======================================================
@@ -763,6 +793,26 @@ HIRING MODAL (FOR EMPLOYERS)
             </div>
             <button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="closeHiringModal()">Got it</button>
         </div>
+    </div>
+</div>
+
+<!-- ======================================================
+WORKER PROFILE MODAL
+====================================================== -->
+<div class="modal-overlay" id="profileModalOverlay">
+    <div class="application-modal">
+        <button class="close-btn" id="closeProfileModalBtn">&times;</button>
+        <div class="profile-header">
+            <h2 id="profileName"></h2>
+            <span class="badge" id="profileNationality" style="position: static;"></span>
+        </div>
+        <div class="profile-body" style="margin-top: 20px;">
+            <h4 style="color: var(--primary);">Biography</h4>
+            <p id="profileBio" style="color: var(--gray); font-size: 14px; margin: 10px 0 20px;"></p>
+            <h4 style="color: var(--primary);">Specialized Skills</h4>
+            <div class="worker-tags" id="profileSkills" style="margin-top: 10px;"></div>
+        </div>
+        <button class="btn btn-primary hire-btn" style="width: 100%; margin-top: 30px;">Request Interview</button>
     </div>
 </div>
 
