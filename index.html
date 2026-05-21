@@ -815,12 +815,24 @@ HIRING MODAL (FOR EMPLOYERS)
             <!-- Step 2: Workforce Needs -->
             <div class="form-step">
                 <label for="workforceType">Staff Category</label>
-                <select id="workforceType" name="workforceType" class="form-select" required>
-                    <option value="" disabled selected>Select category...</option>
-                    <option value="cleaning" title="Residential and Commercial Cleaning">Cleaning Services</option>
-                    <option value="hospitality" title="Hotel, Catering and Events Staff">Hospitality Staff</option>
-                    <option value="domestic" title="Nannies, Maids and Housekeepers">Domestic Workers</option>
-                </select>
+                <div class="custom-select-wrapper" id="categorySelectWrapper">
+                    <div class="custom-select-trigger" id="categoryTrigger">
+                        <span id="categoryTriggerText">Select category...</span>
+                        <i class="fas fa-chevron-down" style="position: static; font-size: 12px; opacity: 0.5;"></i>
+                    </div>
+                    <ul class="custom-options-list" id="categoryOptionsList">
+                        <div class="moving-highlight" id="categoryMovingHighlight"></div>
+                        <li class="custom-option-item" data-value="cleaning" data-i18n="cleaning_title">Cleaning Services</li>
+                        <li class="custom-option-item" data-value="hospitality" data-i18n="hospitality_title">Hospitality Staff</li>
+                        <li class="custom-option-item" data-value="domestic" data-i18n="domestic_title">Domestic Workers</li>
+                    </ul>
+                    <select id="workforceType" name="workforceType" style="position: absolute; opacity: 0; pointer-events: none;" required>
+                        <option value="" disabled selected>Select category...</option>
+                        <option value="cleaning">Cleaning Services</option>
+                        <option value="hospitality">Hospitality Staff</option>
+                        <option value="domestic">Domestic Workers</option>
+                    </select>
+                </div>
 
                 <div id="categoryDescription" class="category-info" style="display: none;"></div>
 
@@ -841,9 +853,20 @@ HIRING MODAL (FOR EMPLOYERS)
                 </div>
 
                 <label for="packageType" style="margin-top: 15px;">Package Type</label>
-                <div class="select-with-icon">
+                <div class="select-with-icon custom-select-wrapper" id="packageSelectWrapper">
                     <i id="packageIcon" class="fas fa-business-time" title="Click to compare packages"></i>
-                    <select id="packageType" name="packageType" class="form-select" required>
+                    <div class="custom-select-trigger" id="packageTrigger">
+                        <span id="packageTriggerText" data-i18n="package_full">Full-time (192 hrs/month)</span>
+                        <i class="fas fa-chevron-down" style="position: static; font-size: 12px; opacity: 0.5;"></i>
+                    </div>
+                    <ul class="custom-options-list" id="packageOptionsList">
+                        <div class="moving-highlight" id="packageMovingHighlight"></div>
+                        <li class="custom-option-item" data-value="full-time" data-i18n="package_full">Full-time (192 hrs/month)</li>
+                        <li class="custom-option-item" data-value="part-time" data-i18n="package_part">Part-time (96 hrs/month)</li>
+                        <li class="custom-option-item" data-value="daily" data-i18n="package_daily">Daily (8 hrs/day)</li>
+                        <li class="custom-option-item" data-value="hourly" data-i18n="package_hourly">Hourly (Per Hour)</li>
+                    </ul>
+                    <select id="packageType" name="packageType" style="position: absolute; opacity: 0; pointer-events: none;" required>
                         <option value="full-time" selected>Full-time (192 hrs/month)</option>
                         <option value="part-time">Part-time (96 hrs/month)</option>
                         <option value="daily">Daily (8 hrs/day)</option>

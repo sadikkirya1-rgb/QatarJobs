@@ -60,6 +60,10 @@ const translations = {
         btn_inquire: "Inquire Now",
         btn_book: "Book Service",
         btn_hire_staff: "Hire Staff",
+        package_full: "Full-time (192 hrs/month)",
+        package_part: "Part-time (96 hrs/month)",
+        package_daily: "Daily (8 hrs/day)",
+        package_hourly: "Hourly (Per Hour)",
         quick_quote: "Quick Quote",
         workers_title: "Professional African Workforce",
         workers_subtitle: "Verified African workers available for immediate deployment in Qatar.",
@@ -156,6 +160,10 @@ const translations = {
         btn_inquire: "استفسر الآن",
         btn_book: "احجز الخدمة",
         btn_hire_staff: "توظيف موظفين",
+        package_full: "دوام كامل (192 ساعة/شهر)",
+        package_part: "دوام جزئي (96 ساعة/شهر)",
+        package_daily: "يومي (8 ساعات/يوم)",
+        package_hourly: "بالساعة (لكل ساعة)",
         quick_quote: "اقتباس سريع",
         workers_title: "القوى العاملة الأفريقية المهنية",
         workers_subtitle: "عمال أفارقة معتمدون متاحون للنشر الفوري في قطر.",
@@ -1053,9 +1061,63 @@ function init() {
     }
     
     updateBudgetUI(); // Initial call
-
     const savedLang = localStorage.getItem('language') || 'en';
     setLanguage(savedLang);
+
+    // Initialize custom selects
+    initCustomSelect('packageSelectWrapper', 'packageTrigger', 'packageOptionsList', 'packageMovingHighlight', 'packageType', 'packageTriggerText');
+    initCustomSelect('categorySelectWrapper', 'categoryTrigger', 'categoryOptionsList', 'categoryMovingHighlight', 'workforceType', 'categoryTriggerText');
 }
+
+/* REUSABLE CUSTOM SELECT LOGIC */
+function initCustomSelect(wrapperId, triggerId, listId, highlightId, nativeId, triggerTextId) {
+    const wrapper = document.getElementById(wrapperId);
+    const trigger = document.getElementById(triggerId);
+    const list = document.getElementById(listId);
+    const highlight = document.getElementById(highlightId);
+    const nativeSelect = document.getElementById(nativeId);
+    const triggerText = document.getElementById(triggerTextId);
+
+    if (!wrapper || !trigger || !list || !highlight) return;
+
+    // Spotlight effect logic
+    trigger.addEventListener('mousemove', (e) => {
+        const rect = trigger.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        trigger.style.setProperty('--x', `${x}px`);
+        trigger.style.setProperty('--y', `${y}px`);
+    });
+
+    trigger.onclick = (e) => {
+        e.stopPropagation();
+        // Close all other custom selects first
+        document.querySelectorAll('.custom-select-wrapper').forEach(w => {
+            if (w !== wrapper) w.classList.remove('active');
+        });
+        wrapper.classList.toggle('active');
+    };
+
+    list.querySelectorAll('.custom-option-item').forEach(option => {
+        option.addEventListener('mouseenter', () => {
+            highlight.style.transform = `translateY(${option.offsetTop}px)`;
+            highlight.style.height = `${option.offsetHeight}px`;
+        });
+
+        option.addEventListener('click', () => {
+            const val = option.dataset.value;
+            nativeSelect.value = val;
+            triggerText.textContent = option.textContent;
+            const i18nKey = option.getAttribute('data-i18n');
+            if (i18nKey) triggerText.setAttribute('data-i18n', i18nKey);
+            wrapper.classList.remove('active');
+            nativeSelect.dispatchEvent(new Event('change'));
+        });
+    });
+}
+
+window.addEventListener('click', () => {
+    document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('active'));
+});
 
 init();
