@@ -826,6 +826,8 @@ HIRING MODAL (FOR EMPLOYERS)
                     <select id="packageType" name="packageType" class="form-select" required>
                         <option value="full-time" selected>Full-time (192 hrs/month)</option>
                         <option value="part-time">Part-time (96 hrs/month)</option>
+                        <option value="daily">Daily (8 hrs/day)</option>
+                        <option value="hourly">Hourly (Per Hour)</option>
                     </select>
                 </div>
 
@@ -835,7 +837,7 @@ HIRING MODAL (FOR EMPLOYERS)
                 <!-- Budget Range Slider -->
                 <div style="margin-top: 25px;">
                     <label for="budgetRange" style="display: flex; justify-content: space-between;">
-                        <span>Monthly Budget Preference (Per Staff)</span>
+                        <span id="budgetLabelText">Monthly Budget Preference (Per Staff)</span>
                         <span style="color: var(--primary); font-weight: 700;"><span id="budgetValue">3000</span> QAR</span>
                     </label>
                     <input type="range" id="budgetRange" name="budgetRange" min="1000" max="10000" step="100" value="3000" class="form-range" style="margin: 12px 0;">

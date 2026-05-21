@@ -319,9 +319,16 @@ function populateHiringSummary() {
     const packageType = document.getElementById('packageType').value;
     const packageText = document.getElementById('packageType').options[document.getElementById('packageType').selectedIndex].text;
 
-    const hoursPerMonth = packageType === 'full-time' ? 192 : 96;
-    const hourlyRate = (budgetPref / hoursPerMonth).toFixed(2);
-    const estimatedTotal = budgetPref * quantity;
+    const hoursLookup = { 'full-time': 192, 'part-time': 96, 'daily': 8, 'hourly': 1 };
+    const hoursPerUnit = hoursLookup[packageType];
+    const hourlyRate = (budgetPref / hoursPerUnit).toFixed(2);
+    
+    // Calculate a monthly estimate for the summary
+    let unitMultiplier = 1; // monthly is base
+    if (packageType === 'daily') unitMultiplier = 26; 
+    if (packageType === 'hourly') unitMultiplier = 192;
+    
+    const estimatedTotal = budgetPref * quantity * unitMultiplier;
     const priceDisplay = estimatedTotal > 0 ? `${estimatedTotal.toLocaleString()} QAR` : "Contact for Quote";
 
     const data = {
@@ -334,7 +341,7 @@ function populateHiringSummary() {
         "Calculated Hourly": `${hourlyRate} QAR/Hour`,
         "Location": document.getElementById('serviceLocation').value,
         "Start Date": document.getElementById('expectedDate').value,
-        "Estimated Monthly Total": priceDisplay
+        "Est. Monthly Total": priceDisplay
     };
 
     summaryDiv.innerHTML = `
@@ -922,11 +929,12 @@ function updateBudgetUI() {
     const warningWrapper = document.getElementById('warningWrapper');
     const tooltipDisplay = document.getElementById('budgetTooltip');
     const packageIcon = document.getElementById('packageIcon');
+    const budgetLabelText = document.getElementById('budgetLabelText');
 
     const minRates = {
-        cleaning: { 'full-time': 2500, 'part-time': 1500 },
-        hospitality: { 'full-time': 3200, 'part-time': 2000 },
-        domestic: { 'full-time': 1800, 'part-time': 1100 }
+        cleaning: { 'full-time': 2500, 'part-time': 1500, 'daily': 150, 'hourly': 25 },
+        hospitality: { 'full-time': 3200, 'part-time': 2000, 'daily': 200, 'hourly': 35 },
+        domestic: { 'full-time': 1800, 'part-time': 1100, 'daily': 100, 'hourly': 20 }
     };
 
     const minReasons = {
@@ -936,10 +944,27 @@ function updateBudgetUI() {
     };
 
     if (packageIcon) {
-        packageIcon.className = packageType === 'full-time' ? 'fas fa-business-time' : 'fas fa-user-clock';
+        const icons = {
+            'full-time': 'fas fa-business-time',
+            'part-time': 'fas fa-user-clock',
+            'daily': 'fas fa-calendar-day',
+            'hourly': 'fas fa-clock'
+        };
+        packageIcon.className = icons[packageType];
     }
 
-    const hoursPerMonth = packageType === 'full-time' ? 192 : 96;
+    if (budgetLabelText) {
+        const labels = {
+            'full-time': 'Monthly Budget Preference (Per Staff)',
+            'part-time': 'Monthly Budget Preference (Per Staff)',
+            'daily': 'Daily Budget Preference (Per Staff)',
+            'hourly': 'Hourly Budget Preference (Per Staff)'
+        };
+        budgetLabelText.textContent = labels[packageType];
+    }
+
+    const hoursLookup = { 'full-time': 192, 'part-time': 96, 'daily': 8, 'hourly': 1 };
+    const hoursPerUnit = hoursLookup[packageType];
     
     if (slider && display) {
         const val = parseInt(slider.value);
@@ -952,7 +977,7 @@ function updateBudgetUI() {
         
         slider.style.background = `linear-gradient(to right, var(--primary) 0%, var(--secondary) ${percent}%, rgba(255, 255, 255, 0.1) ${percent}%)`;
         
-        const hourly = (val / hoursPerMonth).toFixed(2);
+        const hourly = (val / hoursPerUnit).toFixed(2);
         if (hourlyDisplay) {
             hourlyDisplay.innerHTML = `<i class="fas fa-calculator"></i> Est. <strong>${hourly} QAR/hour</strong> (${packageType})`;
         }
@@ -973,6 +998,22 @@ function updateBudgetUI() {
     }
 }
 
+/* HANDLE SLIDER BOUNDS ON PACKAGE CHANGE */
+function handlePackageChange() {
+    const packageType = document.getElementById('packageType').value;
+    const slider = document.getElementById('budgetRange');
+    if (!slider) return;
+
+    if (packageType === 'hourly') {
+        slider.min = 15; slider.max = 300; slider.step = 1; slider.value = 35;
+    } else if (packageType === 'daily') {
+        slider.min = 80; slider.max = 1200; slider.step = 10; slider.value = 200;
+    } else {
+        slider.min = 1000; slider.max = 12000; slider.step = 100; slider.value = 3000;
+    }
+    updateBudgetUI();
+}
+
 // Initialize everything
 function init() {
     initDrafts();
@@ -984,7 +1025,7 @@ function init() {
         budgetSlider.addEventListener('input', updateBudgetUI);
     }
     if (packageSelect) {
-        packageSelect.addEventListener('change', updateBudgetUI);
+        packageSelect.addEventListener('change', handlePackageChange);
     }
     if (categorySelect) {
         categorySelect.addEventListener('change', updateBudgetUI);
