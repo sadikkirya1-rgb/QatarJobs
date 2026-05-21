@@ -1401,3 +1401,18 @@ body.dark-mode .application-modal {
 
 .check-icon { color: var(--secondary); }
 .times-icon { color: #ff4d4d; }
+
+/* Recommended Badge for Comparison Table */
+.recommended-badge {
+    display: block;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    width: fit-content;
+    margin: 5px 0 0;
+    cursor: help;
+}
