@@ -21,6 +21,45 @@ const translations = {
         hospitality_desc: "Expert hotel cleaners, catering staff, and hospitality professionals from across Africa.",
         domestic_title: "Domestic Workers",
         domestic_desc: "Verified African maids, nannies, and housekeepers for homes and luxury villas.",
+        service_res_title: "Residential Cleaning Services",
+        service_res_std_title: "Standard Cleaning",
+        service_res_std_desc: "Regular dusting, vacuuming, mopping, and surface wiping for Qatari villas and apartments.",
+        service_res_deep_title: "Deep Cleaning",
+        service_res_deep_desc: "Detailed scrubbing of grout, baseboards, and inside kitchen appliances.",
+        service_res_move_title: "Move-In / Move-Out",
+        service_res_move_desc: "Full sanitization of empty properties for new occupants or landlords.",
+        service_res_sofa_title: "Sofa & Upholstery Care",
+        service_res_sofa_desc: "Deep steam cleaning for majlis seating, couches, mattresses, and heavy curtains.",
+        service_res_win_title: "Window Cleaning",
+        service_res_win_desc: "Interior and exterior glass washing to remove desert dust and sand streaks.",
+        service_com_title: "Commercial & Office Cleaning",
+        service_com_off_title: "Office Janitorial",
+        service_com_off_desc: "Daily or weekly workspace cleaning, desk sanitization, and trash removal.",
+        service_com_ret_title: "Retail & Showroom",
+        service_com_ret_desc: "Floor polishing and high-gloss window cleaning for malls and storefronts.",
+        service_com_med_title: "Clinic & Medical Disinfection",
+        service_com_med_desc: "Specialized, high-level sanitization meeting Qatar Ministry of Public Health standards.",
+        service_com_ind_title: "Industrial & Warehouse",
+        service_com_ind_desc: "Heavy-duty floor scrubbing, pressure washing, and degreasing.",
+        service_hosp_title: "Hospitality Services",
+        service_hosp_short_title: "Airbnb & Short-Term Rental",
+        service_hosp_short_desc: "Fast-turnaround cleaning, restocking, and laundry between guests.",
+        service_hosp_hotel_title: "Hotel Housekeeping Staffing",
+        service_hosp_hotel_desc: "Outsourced, well-trained room cleaning and turndown service staff.",
+        service_hosp_event_title: "Event & Party Cleanup",
+        service_hosp_event_desc: "Pre-event setup, during-event maintenance, and post-party cleanup for large gatherings.",
+        service_hosp_kitch_title: "Kitchen Stewarding",
+        service_hosp_kitch_desc: "Professional stewards for commercial kitchens, dishwashing, and food prep cleanup.",
+        service_staff_title: "Hospitality & Domestic Staffing",
+        service_staff_maid_title: "Hourly/Monthly Maids",
+        service_staff_maid_desc: "Professionally trained, vetted female maids for domestic help on flexible schedules.",
+        service_staff_office_title: "Office Boys/Girls",
+        service_staff_office_desc: "Dedicated staff for serving Arabic coffee, tea, and managing office hospitality.",
+        service_staff_host_title: "Event Hostesses & Waiters",
+        service_staff_host_desc: "Premium hospitality staff for corporate events, weddings, and private VIP gatherings.",
+        btn_inquire: "Inquire Now",
+        btn_book: "Book Service",
+        btn_hire_staff: "Hire Staff",
         quick_quote: "Quick Quote",
         workers_title: "Professional African Workforce",
         workers_subtitle: "Verified African workers available for immediate deployment in Qatar.",
@@ -75,6 +114,45 @@ const translations = {
         hospitality_desc: "عمال تنظيف فنادق خبراء، وموظفي تموين، ومحترفي ضيافة من جميع أنحاء أفريقيا.",
         domestic_title: "العمالة المنزلية",
         domestic_desc: "خادمات أفريقيات ومربيات ومدبرات منزل معتمدات للمنازل والفيلات الفاخرة.",
+        service_res_title: "خدمات التنظيف السكني",
+        service_res_std_title: "التنظيف القياسي",
+        service_res_std_desc: "نفض الغبار الدوري، والكنس، ومسح الأرضيات، ومسح الأسطح للفيلات والشقق القطرية.",
+        service_res_deep_title: "التنظيف العميق",
+        service_res_deep_desc: "فرك دقيق للفواصل، والألواح الأرضية، وتنظيف الأجهزة المطبخية من الداخل.",
+        service_res_move_title: "تنظيف الانتقال (دخول/خروج)",
+        service_res_move_desc: "تعقيم كامل للعقارات الفارغة للمستأجرين الجدد أو الملاك.",
+        service_res_sofa_title: "العناية بالكنب والمفروشات",
+        service_res_sofa_desc: "تنظيف عميق بالبخار لجلسات المجالس، والكنب، والمراتب، والستائر الثقيلة.",
+        service_res_win_title: "تنظيف النوافذ",
+        service_res_win_desc: "غسيل الزجاج الداخلي والخارجي لإزالة غبار الصحراء وآثار الرمال.",
+        service_com_title: "تنظيف المكاتب والمنشآت التجارية",
+        service_com_off_title: "خدمات التنظيف المكتبية",
+        service_com_off_desc: "تنظيف يومي أو أسبوعي لمساحات العمل، وتعقيم المكاتب، وإزالة النفايات.",
+        service_com_ret_title: "البيع بالتجزئة وصالات العرض",
+        service_com_ret_desc: "تلميع الأرضيات وتنظيف النوافذ عالي اللمعان للمولات وواجهات المحلات.",
+        service_com_med_title: "تطهير العيادات والمنشآت الطبية",
+        service_com_med_desc: "تعقيم متخصص وعالي المستوى يلبي معايير وزارة الصحة العامة القطرية.",
+        service_com_ind_title: "التنظيف الصناعي والمستودعات",
+        service_com_ind_desc: "فرك الأرضيات للأعمال الشاقة، والغسيل بالضغط، وإزالة الشحوم.",
+        service_hosp_title: "خدمات الضيافة",
+        service_hosp_short_title: "تجهيز وحدات الإيجار قصير الأمد",
+        service_hosp_short_desc: "تنظيف سريع، وإعادة تعبئة المستلزمات، والغسيل بين الضيوف.",
+        service_hosp_hotel_title: "توفير موظفي التدبير المنزلي للفنادق",
+        service_hosp_hotel_desc: "موظفون مدربون جيداً لتنظيف الغرف وخدمة تحضير الأسرّة.",
+        service_hosp_event_title: "تنظيف الفعاليات والحفلات",
+        service_hosp_event_desc: "تجهيز ما قبل الفعالية، والصيانة أثناء الفعالية، والتنظيف بعد الحفل للتجمعات.",
+        service_hosp_kitch_title: "خدمات غسيل الأواني والمطبخ",
+        service_hosp_kitch_desc: "عمال مطبخ محترفون للمطابخ التجارية، وغسيل الصحون، وتنظيف تحضير الطعام.",
+        service_staff_title: "خدمات الضيافة والعمالة المنزلية",
+        service_staff_maid_title: "خادمات بالساعة أو بالشهر",
+        service_staff_maid_desc: "خادمات مدربات ومعتمدات للمساعدة المنزلية بجداول زمنية مرنة.",
+        service_staff_office_title: "موظفو خدمات المكاتب",
+        service_staff_office_desc: "موظفون مخصصون لتقديم القهوة العربية والشاي وإدارة ضيافة المكاتب.",
+        service_staff_host_title: "مضيفات ونادلين للفعاليات",
+        service_staff_host_desc: "موظفو ضيافة متميزون للفعاليات الشركات، وحفلات الزفاف، والتجمعات الخاصة.",
+        btn_inquire: "استفسر الآن",
+        btn_book: "احجز الخدمة",
+        btn_hire_staff: "توظيف موظفين",
         quick_quote: "اقتباس سريع",
         workers_title: "القوى العاملة الأفريقية المهنية",
         workers_subtitle: "عمال أفارقة معتمدون متاحون للنشر الفوري في قطر.",
@@ -450,9 +528,36 @@ if (coverLetterTextarea) {
 }
 
 /* HIRE WORKERS INTEGRATION */
-function openHiringModal() {
+function openHiringModal(serviceName = null) {
     hiringModalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    const modalSubTitle = document.querySelector('#hiringModalContent p');
+    const workforceSelect = document.getElementById('workforceType');
+    
+    if (serviceName) {
+        // Update modal text to show specific service
+        const currentLang = mainHtml.getAttribute('lang');
+        const prefix = currentLang === 'ar' ? 'طلب خدمة: ' : 'Requesting: ';
+        modalSubTitle.innerHTML = `${prefix}<strong style="color: var(--primary);">${serviceName}</strong>`;
+        
+        // Smart auto-selection of category
+        const nameLower = serviceName.toLowerCase();
+        if (nameLower.includes('cleaning') || nameLower.includes('janitorial') || nameLower.includes('scrubbing')) {
+            workforceSelect.value = 'cleaning';
+        } else if (nameLower.includes('hospitality') || nameLower.includes('hotel') || nameLower.includes('event') || nameLower.includes('steward')) {
+            workforceSelect.value = 'hospitality';
+        } else if (nameLower.includes('maid') || nameLower.includes('domestic') || nameLower.includes('nanny')) {
+            workforceSelect.value = 'domestic';
+        }
+        
+        // Trigger change event to update any dependent UI (like category descriptions)
+        workforceSelect.dispatchEvent(new Event('change'));
+    } else {
+        // Fallback for general hire buttons
+        const currentLang = mainHtml.getAttribute('lang');
+        modalSubTitle.textContent = currentLang === 'ar' ? 'أخبرنا عن متطلبات القوى العاملة لديك.' : 'Tell us about your workforce requirements.';
+    }
 }
 
 function closeHiringModal() {
@@ -466,9 +571,14 @@ function closeHiringModal() {
 if (closeHiringModalBtn) closeHiringModalBtn.onclick = closeHiringModal;
 
 document.addEventListener('click', (e) => {
-    if (e.target.closest('.hire-btn')) {
+    const hireBtn = e.target.closest('.hire-btn');
+    if (hireBtn) {
         e.preventDefault();
-        openHiringModal();
+        // Find the service title relative to the button clicked
+        const serviceCard = hireBtn.closest('.qatar-service-card, .service-card');
+        const serviceTitle = serviceCard ? (serviceCard.querySelector('h4') || serviceCard.querySelector('h3')).textContent : null;
+        
+        openHiringModal(serviceTitle);
     }
 });
 

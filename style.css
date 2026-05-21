@@ -469,6 +469,10 @@ NEW QATAR SERVICES SECTION
     box-shadow: 0 15px 40px rgba(0, 217, 255, 0.15);
 }
 
+.qatar-service-card:hover .qatar-service-icon {
+    color: var(--secondary);
+}
+
 .qatar-service-icon {
     font-size: 40px;
     color: var(--primary);
@@ -885,6 +889,8 @@ MODAL & FORM VALIDATION
     border-radius: 30px;
     width: 90%;
     max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
     border: 1px solid rgba(255,255,255,0.1);
     position: relative;
 }
