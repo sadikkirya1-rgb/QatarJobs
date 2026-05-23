@@ -8,7 +8,7 @@ const translations = {
         nav_process: "Process",
         nav_contact: "Contact",
         hero_badge: "150+ Workers Available Today In Qatar",
-        hero_title: "African Cleaning & <span>Recruitment Experts</span>",
+        hero_title: "Med<span>Rich</span> Cleaning, Hospitality & Domestic Workers",
         hero_desc: "Premium African workforce recruitment services based in Qatar and proudly owned by Ugandan professionals. We provide verified African maids, office cleaners, hospitality staff, villa cleaners, manpower solutions, and freelance visa support across Doha and Qatar.",
         btn_hire: "Hire Workers",
         btn_apply: "Apply For Jobs",
@@ -92,13 +92,13 @@ const translations = {
         faq_q2: "Are your workers trained? <i class=\"fas fa-chevron-down\"></i>",
         faq_a2: "Yes, all our workers undergo rigorous screening and specific training for the Qatar market, including hospitality standards and modern cleaning techniques.",
         faq_q3: "Do you provide freelance visa support? <i class=\"fas fa-chevron-down\"></i>",
-        faq_a3: "Medrich specializes in providing legal manpower solutions and documentation support for African professionals entering the Qatar workforce.",
+        faq_a3: "MedRich specializes in providing legal manpower solutions and documentation support for African professionals entering the Qatar workforce.",
         cta_title: "Hire Professional African Workers In Qatar",
         cta_desc: "Trusted recruitment agency for African cleaners, maids, hospitality staff, and manpower solutions.",
         cta_btn: "Contact Us Today",
-        footer_title: "Medrich Qatar Recruitment & Cleaning Services",
+        footer_title: "MedRich Qatar Recruitment & Cleaning Services",
         footer_desc: "Proudly Ugandan-Owned | African Workforce Specialists",
-        footer_rights: "© 2026 CleanPro Qatar. All Rights Reserved."
+        footer_rights: "© 2026 MedRich Qatar. All Rights Reserved."
     },
     ar: {
         logo_suffix: "خدمات تنظيف",
@@ -108,7 +108,7 @@ const translations = {
         nav_process: "العملية",
         nav_contact: "اتصل بنا",
         hero_badge: "أكثر من 150 عامل متاح اليوم في قطر",
-        hero_title: "خبراء التنظيف <span>والتوظيف الأفارقة</span>",
+        hero_title: "مد<span>ريتش</span> للتنظيف، والضيافة والعمالة المنزلية",
         hero_desc: "خدمات توظيف رائدة للقوى العاملة الأفريقية مقرها قطر وتعود ملكيتها لمهنيين أوغنديين. نحن نوفر خادمات أفريقيات، وعمال تنظيف مكاتب، وموظفي ضيافة، وحلول قوى عاملة، ودعم تأشيرات العمل الحر في الدوحة وجميع أنحاء قطر.",
         btn_hire: "توظيف عمال",
         btn_apply: "التقديم للوظائف",
@@ -192,13 +192,13 @@ const translations = {
         faq_q2: "هل عمالكم مدربون؟ <i class=\"fas fa-chevron-down\"></i>",
         faq_a2: "نعم، يخضع جميع عمالنا لفحص صارم وتدريب محدد لسوق قطر، بما في ذلك معايير الضيافة وتقنيات التنظيف الحديثة.",
         faq_q3: "هل تقدمون دعم تأشيرة العمل الحر؟ <i class=\"fas fa-chevron-down\"></i>",
-        faq_a3: "تتخصص ميدريتش في توفير حلول القوى العاملة القانونية ودعم التوثيق للمهنيين الأفارقة الذين يدخلون سوق العمل القطري.",
+        faq_a3: "تتخصص مدريتش في توفير حلول القوى العاملة القانونية ودعم التوثيق للمهنيين الأفارقة الذين يدخلون سوق العمل القطري.",
         cta_title: "وظف عمالاً أفارقة محترفين في قطر",
         cta_desc: "وكالة توظيف موثوقة لعمال التنظيف والخادمات وموظفي الضيافة وحلول القوى العاملة الأفريقية.",
         cta_btn: "اتصل بنا اليوم",
-        footer_title: "ميدريتش قطر لخدمات التوظيف والتنظيف",
+        footer_title: "مدريتش قطر لخدمات التوظيف والتنظيف",
         footer_desc: "مملوكة بفخر لأوغنديين | متخصصون في القوى العاملة الأفريقية",
-        footer_rights: "© 2026 CleanPro قطر. جميع الحقوق محفوظة."
+        footer_rights: "© 2026 مدريتش قطر. جميع الحقوق محفوظة."
     }
 };
 
