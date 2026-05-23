@@ -188,12 +188,12 @@ HERO
 ====================================================== */
 
 .hero{
-    min-height:100vh;
+    min-height: 50vh;
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:70px;
-    padding:170px 8% 120px;
+    padding: 110px 8% 0px;
     position:relative;
     overflow:hidden;
 }
@@ -245,7 +245,7 @@ HERO
 .hero-content h1{
     font-size:80px;
     line-height:1;
-    margin-bottom:30px;
+    margin-bottom: 20px;
     font-weight:800;
 }
 
@@ -260,7 +260,7 @@ HERO
     color:var(--gray);
     line-height:1.9;
     font-size:18px;
-    margin-bottom:35px;
+    margin-bottom: 25px;
 }
 
 .hero-buttons{
@@ -324,12 +324,12 @@ SECTION
 ====================================================== */
 
 section{
-    padding:110px 8%;
+    padding: 25px 8%;
 }
 
 .section-title{
     text-align:center;
-    margin-bottom:70px;
+    margin-bottom: 20px;
 }
 
 .section-title h2{
@@ -471,7 +471,7 @@ NEW QATAR SERVICES SECTION
 ====================================================== */
 
 .qatar-services-wrapper {
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 .qatar-category-title {
